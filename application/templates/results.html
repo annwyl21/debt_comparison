@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+
+<div class="container-fluid bg-1 text-center">
+    <div class="row">
+    <h1>Debt Calculator Results</h1>
+
+    <div class="col-sm-6">
+<h4>Which is better for you ?</h4>
+</div>
+<div class="col-sm-6">
+    <img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" width="30%" alt="woman solving debt problems">
+</div>
+    <div class="col-sm-4">
+        <br> 
+        The <span>Debt Stack Approach</span> is to pay off the debt with the <span>highest interest</span> first.
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Debt Stack - cheaper!</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for object_instance in stack_dict.values() %}
+            <tr>
+                <td>{{ object_instance.get_debt_source() }}, &pound;{{ '%.2f' % object_instance.get_debt_total_figure() }}<br>with {{ object_instance.get_debt_interest() }}%APR, repayments of &pound;{{ object_instance.get_repayment() }}<br> paid by {{ object_instance.get_stack_months() }} months ({{ object_instance.get_stack_years() }} years)</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <br> 
+        The <b>Debt Snowball Approach</b> is to pay off the <b>smallest debt</b> first.
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Debt Snowball - easier!</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object_instance in snowball_dict.values() %}
+                <tr>
+                    <td>{{ object_instance.get_debt_source() }}, &pound;{{ '%.2f' % object_instance.get_debt_total_figure() }}<br>with {{ object_instance.get_debt_interest() }}%APR, repayments of &pound;{{ object_instance.get_repayment() }}<br> paid by {{ object_instance.get_snowball_months() }} months ({{ object_instance.get_snowball_years() }} years)</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <br>
+        The <b>Debt Avalanche Approach</b> is to pay off the <b>biggest debt</b> first.
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Debt Avalanche - faster!</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object_instance in avalanche_dict.values() %}
+                <tr>
+                    <td>{{ object_instance.get_debt_source() }}, &pound;{{ '%.2f' % object_instance.get_debt_total_figure() }}<br>with {{ object_instance.get_debt_interest() }}%APR, repayments of &pound;{{ object_instance.get_repayment() }}<br> paid by {{ object_instance.get_avalanche_months() }} months ({{ object_instance.get_avalanche_years() }} years)</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}

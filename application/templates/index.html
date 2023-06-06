@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+<h1>Simple Debt Repayment Methods</h1>
+<h4>Which is Cheaper/ Faster/ Easier... Snowball, Stack or Avalanche???</h4>
+<p>
+  <ul>
+    <li><span>DEBT STACK</span> order by interest rate, pay highest interest rate first</li>
+    <li><span>SNOWBALL</span> order by debt size, pay smallest debt first</li>
+    <li><span>DEBT AVALANCHE</span> order by debt size, pay largest debt first</li>
+  </ul>
+</p>
+
+<a class="btn btn-primary" href="./debt_comparison_form" role="button">Enter debts</a>
+
+{% endblock %}
