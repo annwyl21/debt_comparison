@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block main_content %}
-<h4>Snowball, Stack or Avalanche???</h4>
+<h1>Snowball, Stack or Avalanche???</h1>
 <br>
 
 <div class="container-fluid bg-1 text-left">
   <div class="row">
     <div class="col-sm-12">
 
-        <h4>Enter information about 3 of your debts here and see the difference between a snowball and a stack method...</h4>
+        <h5>Enter information about 3 of your debts here and see the difference between a snowball and a stack method...</h5>
         {{ message }} <!-- This is the error message given to the user if anything is entered incorrectly on the form -->
           <br>
       
@@ -16,12 +16,12 @@
       <div class="accordion" id="debtcomparisonaccordion">
 
         <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
+          <h2 class="accordion-header" id="DebtEntryHeader">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <h5>Enter Debts Here</h5>
+              <h3>Enter Debts Here</h3>
             </button>
           </h2>
-          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#debtcomparisonaccordion">
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="DebtEntryHeader" data-bs-parent="#debtcomparisonaccordion">
             <div class="accordion-body">
               <div class="form">
               <form method="POST" action="">

@@ -1,31 +1,14 @@
-
 body {
-    margin: 10px;
     text-align: left;
-    background-color: white-smoke;
-    color: #4A5759;
+    background-color: red;
+    color: white;
     font-size: 1.7em;
-}
-
-/* landing page carousel */
-.carousel-inner img {
-    width: 100%;
-    margin: auto;
-    min-height:200px;
 }
 
 /* this changes the disclaimer and submit buttons colour */
 #disclaimer, .submit {
-    background-color: #FDA769;
-    border-color: #FDA769;
-}
-
-#disclaimer, .col-left p {
-    margin-top: 20px;
-}
-
-#disclaimer {
-    text-align: center;
+    background-color: black;
+    border-color: black;
 }
 
 table, th, td {
@@ -33,60 +16,37 @@ table, th, td {
 }
 
 td {
-    color: #4A5759;
+    color: white;
     text-align: center;
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-     background-color: #D2D4C8;
+     background-color: grey;
      text-align: center;
-     color: #4A5759;
+     color: white;
    }
 
-h1, h2, h3, h4, h5 {
+h1, h4{
     text-align: center;
     font-weight: bold;
-    color: #FDA769;
+    color: black;
+}
+
+h2, h3 {
+    text-align: center;
+    color: grey;
 }
 
 th {
-    color: #ABC270;
+    color: black;
     text-align: center;
     font-weight: bold;
 }
-
-p {
-    text-align: justify;
-}
-
-a {
-    display: block;
-    text-align: center;
-    color: #FDA769;
-}
-
 
 input:placeholder-shown {
     font-style: italic;
 }
-
-
-.well {
-    margin-top: 10px;
-}
-
-.well p {
-    margin-bottom: 0px;
-}
-
-span {
-    font-weight: bold;
-}
-
-
-
-
 
 @media screen and (max-width: 650px) {
     .column {
@@ -95,34 +55,12 @@ span {
     }
 }
 
-.title {
-    color: #ABC270;
-    text-align: center;
-    font-style: italic;
-    font-size: 1em;
-}
-
-
-
-
-
-/* accordion styling additions */
-
-.accordion-toggle {
-    background-color: gray;
-    display: block;
-    padding: 10px;
-    margin: -10px -15px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-}
-
-.accordion-toggle.collapsed {
+.accordion-button:not(.collapsed) {
+    color: grey;
     background-color: white;
 }
 
-.accordion-button:not(.collapsed) {
-    color: #473C33;
-    background-color: #D2D4C8;
+.btn-primary {
+    background-color: black;
+    border-color: black;
 }
-

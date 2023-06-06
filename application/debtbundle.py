@@ -1,4 +1,6 @@
 class Debtbundle:
+    def __init__(self):
+        pass
    
     def debt_comparison_calc(self, debt_object1, debt_object2, debt_object3):
         stack = [debt_object1, debt_object2, debt_object3]
