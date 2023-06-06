@@ -1,10 +1,10 @@
 from flask import render_template, request
 from application import app
 from application.debt import Debt
-from application.debtbundle import Debtbundle
+from application.bundle import Bundle
 from application.forms import ComparisonForm
 
-debt_bundle = Debtbundle()
+bundle = Bundle()
 
 @app.route('/')
 def index():
@@ -36,7 +36,7 @@ def debt_comparison():
             debt_object3 = Debt(debt3_amount, debt3_interest, min3_repayment)
             
             # send the debt objects into the comparison calc to find out how long each debt takes to pay off using each debt repayment approach (stack, snowball, avalanche)
-            debt_bundle.debt_comparison_calc(debt_object1, debt_object2, debt_object3)
+            bundle.debt_comparison_calc(debt_object1, debt_object2, debt_object3)
 
             #sort the objects ready for display on the page
             nested_list = [debt_object1, debt_object2, debt_object3]
