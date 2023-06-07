@@ -1,45 +1,51 @@
 body {
     text-align: left;
-    background-color: red;
-    color: white;
+    background-color: #e43e26;
+    color: #f4d97e;
     font-size: 1.7em;
+}
+
+span {
+    font-weight: bolder;
+    font-size: larger;
 }
 
 /* this changes the disclaimer and submit buttons colour */
 #disclaimer, .submit {
-    background-color: black;
-    border-color: black;
+    background-color: #9d6930;
+    border-color: #9d6930;
+    color: #fcf1ef;
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #9d6930;
 }
 
 td {
-    color: white;
+    color: #fcf1ef;
     text-align: center;
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-     background-color: grey;
+     background-color: #eeb633;
      text-align: center;
-     color: white;
+     color: #9d6930;
    }
 
 h1, h4{
     text-align: center;
     font-weight: bold;
-    color: black;
+    color: #f4d97e;
 }
 
 h2, h3 {
     text-align: center;
-    color: grey;
+    color: #9d6930;
 }
 
 th {
-    color: black;
+    color: #f4d97e;
     text-align: center;
     font-weight: bold;
 }
@@ -56,11 +62,16 @@ input:placeholder-shown {
 }
 
 .accordion-button:not(.collapsed) {
-    color: grey;
-    background-color: white;
+    color: #e43e26;
+    background-color: #f4d97e;
 }
 
 .btn-primary {
-    background-color: black;
-    border-color: black;
+    background-color: #9d6930;
+    border-color: #9d6930;
+}
+
+footer {
+    text-align: left;
+    font-size: 0.5em;
 }
