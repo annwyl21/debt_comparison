@@ -1,82 +1,90 @@
 {% extends "layout.html" %}
 
 {% block main_content %}
-<h1>Snowball, Stack or Avalanche???</h1>
-<br>
 
-<div class="container-fluid bg-1 text-left">
   <div class="row">
-    <div class="col-sm-12">
-
-        <h5>Enter information about 3 of your debts here and see the difference between a snowball and a stack method...</h5>
+    <div class="col-sm-12" style="text-align: left;">
+        <h1>My Debts</h1>
         {{ message }} <!-- This is the error message given to the user if anything is entered incorrectly on the form -->
-          <br>
-      
-      <!-- accordion -->
-      <div class="accordion" id="debtcomparisonaccordion">
 
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="DebtEntryHeader">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <h3>Enter Debts Here</h3>
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="DebtEntryHeader" data-bs-parent="#debtcomparisonaccordion">
-            <div class="accordion-body">
-              <div class="form">
-              <form method="POST" action="">
-                {{ form.hidden_tag() }}
-                <h3>Debt 1</h3>
-                <div class="mb-3">
-                  <label for="debt1_amount" class="form-label">{{ form.debt1_amount.label }}</label>
-                    <input type="number" class="form-control" id="debt1_amount" name="debt1_amount" placeholder="5000">
-                </div>
-                <div class="mb-3">
-                  <label for="debt1_interest" class="form-label">{{ form.debt1_interest.label }}</label>
-                  <input type="number" class="form-control" id="debt1_amount" name="debt1_interest" placeholder="5">
-                </div>
-                <div class="mb-3">
-                  <label for="debt1_repayment" class="form-label">{{ form.debt1_repayment.label }}</label>
-                  <input type="number" class="form-control" id="debt1_repayment" name="debt1_repayment" placeholder="10">
-                </div>
-                <br>
+      <div class="form">
+        <form method="POST" action="">
+        {{ form.hidden_tag() }}
 
-                <h3>Debt 2</h3>
-                <div class="mb-3">
-                  <label for="debt1_amount" class="form-label">{{ form.debt2_amount.label }}</label>
-                    <input type="number" class="form-control" id="debt2_amount" name="debt2_amount" placeholder="5000">
-                </div>
-                <div class="mb-3">
-                  <label for="debt2_interest" class="form-label">{{ form.debt2_interest.label }}</label>
-                  <input type="number" class="form-control" id="debt2_amount" name="debt2_interest" placeholder="5">
-                </div>
-                <div class="mb-3">
-                  <label for="debt2_repayment" class="form-label">{{ form.debt2_repayment.label }}</label>
-                  <input type="number" class="form-control" id="debt2_repayment" name="debt2_repayment" placeholder="10">
-                </div>
-                <br>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Debt 1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label for="debt1_amount" class="form-label">Debt Total £</label></td>
+              <td><input type="number" class="form-control" id="debt1_amount" name="debt1_amount" value="1200"></td>
+            </tr>
+            <tr>
+              <td><label for="debt1_interest" class="form-label">APR</label></td>
+              <td><input type="number" class="form-control" id="debt1_amount" name="debt1_interest" value="45"></td>
+            </tr>
+            <tr>
+              <td><label for="debt1_repayment" class="form-label">Repayment £</label></td>
+              <td><input type="number" class="form-control" id="debt1_repayment" name="debt1_repayment" value="35"></td>
+            </tr>
+          </tbody>
+        </table>
 
-                <h3>Debt 3</h3>
-                <div class="mb-3">
-                  <label for="debt3_amount" class="form-label">{{ form.debt3_amount.label }}</label>
-                    <input type="number" class="form-control" id="debt3_amount" name="debt3_amount" placeholder="5000">
-                </div>
-                <div class="mb-3">
-                  <label for="debt3_interest" class="form-label">{{ form.debt3_interest.label }}</label>
-                  <input type="number" class="form-control" id="debt3_amount" name="debt3_interest" placeholder="5">
-                </div>
-                <div class="mb-3">
-                  <label for="debt3_repayment" class="form-label">{{ form.debt3_repayment.label }}</label>
-                  <input type="number" class="form-control" id="debt3_repayment" name="debt3_repayment" placeholder="10">
-                </div>
-                <br>
-                <button type="submit" class="btn btn-primary submit">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Debt 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label for="debt2_amount" class="form-label">Debt Total £</label></td>
+              <td><input type="number" class="form-control" id="debt2_amount" name="debt2_amount" value="850"></td>
+            </tr>
+            <tr>
+              <td><label for="debt2_interest" class="form-label">APR</label></td>
+              <td><input type="number" class="form-control" id="debt2_amount" name="debt2_interest" value="26"></td>
+            </tr>
+            <tr>
+              <td><label for="debt2_repayment" class="form-label">Repayment £</label></td>
+              <td><input type="number" class="form-control" id="debt2_repayment" name="debt2_repayment" value="10"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Debt 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label for="debt3_amount" class="form-label">Debt Total £</label></td>
+              <td><input type="number" class="form-control" id="debt3_amount" name="debt3_amount" value="8000"></td>
+            </tr>
+            <tr>
+              <td><label for="debt3_interest" class="form-label">APR</label></td>
+              <td><input type="number" class="form-control" id="debt3_amount" name="debt3_interest" value="3"></td>
+            </tr>
+            <tr>
+              <td><label for="debt3_repayment" class="form-label">Repayment £</label></td>
+              <td><input type="number" class="form-control" id="debt3_repayment" name="debt3_repayment" value="250"></td>
+            </tr>
+          </tbody>
+        </table>
 
     </div>
+    <br>
+    <button type="submit" class="btn btn-primary submit">Submit</button>
+  </form>
+
   </div>
 </div>
 

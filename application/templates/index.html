@@ -1,22 +1,51 @@
 {% extends "layout.html" %}
 
 {% block main_content %}
+ 
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Simple Debt Repayment Methods</h1>
+      <h4>Which is Cheaper/ Faster/ Easier?</h4>
+    </div>
+  </div>
 
-<h1>Simple Debt Repayment Methods</h1>
-<h4>Which is Cheaper/ Faster/ Easier... Snowball, Stack or Avalanche???</h4>
+  <div class="row">
+    <div class="col-sm-12">
+      <a class="btn btn-primary" href="./debt_comparison_form" role="button">Enter debts</a>
+    </div>
+  </div>
 
-<div class="text-center">
-  <button id="disclaimer" type="button" class="btn btn-danger" onclick="disclaimer()">Click to read Disclaimer</button>
-</div>
+  <div class="row">
+    <div class="col-sm-12">
+      <br>
+      <table id="repayment_methods_table">
+        <tbody>
+          <tr>
+            <td><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}"></td>
+            <td><span>STACK</span><br>pay highest interest rate first</td>
+          </tr>
+          <tr>
+            <td><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}"></td>
+            <td><span>SNOWBALL</span><br>pay smallest debt first</td>
+          </tr>
+          <tr>
+            <td><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"></td>
+            <td><span>AVALANCHE</span><br>pay largest debt first</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <br>
+      <div class="text-center">
+        <button id="disclaimer" type="button" class="btn btn-danger" onclick="disclaimer()">Click to read Disclaimer</button>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <ul>
-    <li><span>DEBT STACK</span> order by interest rate, pay highest interest rate first</li>
-    <li><span>SNOWBALL</span> order by debt size, pay smallest debt first</li>
-    <li><span>DEBT AVALANCHE</span> order by debt size, pay largest debt first</li>
-  </ul>
-</p>
 
-<a class="btn btn-primary" href="./debt_comparison_form" role="button">Enter debts</a>
 
 {% endblock %}

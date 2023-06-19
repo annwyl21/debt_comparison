@@ -2,15 +2,19 @@
 
 {% block main_content %}
 
-<div class="container-fluid bg-1 text-center">
-    <div class="row">
-    <h1>Debt Calculator Results</h1>
+<div class="row">
+    <div class="col-sm-4">
+        <img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" width="30%" alt="woman solving debt problems">
+    <div class="col-sm-8">
+        <h1>Your Results</h1>
+    </div>
 
-    <div class="col-sm-6">
-<h1>Which is better for you ?</h1>
-</div>
+    <h1>Debt Calculator</h1>
+        <h2>Which is better for you?</h2>
+
+
 <div class="col-sm-6">
-    <img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" width="30%" alt="woman solving debt problems">
+    
 </div>
     <div class="col-sm-4">
         <br> 
@@ -75,7 +79,7 @@
         </tbody>
         </table>
     </div>
-</div>
+
 
 
 

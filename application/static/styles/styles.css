@@ -1,8 +1,8 @@
 body {
     text-align: left;
-    background-color: #e43e26;
-    color: #f4d97e;
-    font-size: 1.7em;
+    background-color: lightgray;
+    color: #59480f;
+    font-size: 1.5em;
 }
 
 span {
@@ -10,7 +10,6 @@ span {
     font-size: larger;
 }
 
-/* this changes the disclaimer and submit buttons colour */
 #disclaimer, .submit {
     background-color: #9d6930;
     border-color: #9d6930;
@@ -22,7 +21,7 @@ table, th, td {
 }
 
 td {
-    color: #fcf1ef;
+    color: #544515;
     text-align: center;
 }
 
@@ -33,32 +32,38 @@ td {
      color: #9d6930;
    }
 
+#repayment_methods_table {
+    border: None;
+    text-align: left;
+}
+
 h1, h4{
     text-align: center;
     font-weight: bold;
-    color: #f4d97e;
+    color: #544515;
 }
 
 h2, h3 {
-    text-align: center;
+    text-align: left;
     color: #9d6930;
 }
 
+h5 {
+    font-weight: bold;
+}
+
+h6 {
+    text-align: center;
+}
+
 th {
-    color: #f4d97e;
+    color: #544515;
     text-align: center;
     font-weight: bold;
 }
 
 input:placeholder-shown {
     font-style: italic;
-}
-
-@media screen and (max-width: 650px) {
-    .column {
-    width: 100%;
-    display: block;
-    }
 }
 
 .accordion-button:not(.collapsed) {
@@ -74,4 +79,27 @@ input:placeholder-shown {
 footer {
     text-align: left;
     font-size: 0.5em;
+}
+
+img {
+    border-radius: 50%;
+}
+
+@media screen and (min-width: 320px) {
+    .app-wrapper {
+        width: 360px;
+        height: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        background: linear-gradient(225deg, rgba(226,74,36,1) 0%, rgba(231,207,85,1) 50%, rgba(81,232,24,1) 100%);
+    }
+
+    .container-fluid {
+        height: 100vh; /* set the height to the full viewport height */
+        display: flex; /* to allow centering using justify-content and align-items */
+        justify-content: center; /* center horizontally */
+        align-items: center; /* center vertically */
+    }
 }
