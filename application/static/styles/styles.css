@@ -18,17 +18,16 @@ span {
 
 table, th, td {
     border: 1px solid #9d6930;
+    text-align: left;
 }
 
 td {
     color: #544515;
-    text-align: left;
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
      background-color: #eeb633;
-     text-align: left;
      color: #9d6930;
    }
 
@@ -56,12 +55,32 @@ th {
     text-align: center;
 }
 
-.accordion-button:not(.collapsed) {
-    color: #e43e26;
+.accordion-item {
     background-color: #f4d97e;
+    color: #e43e26;
+    font-size: 0.85em;
 }
 
-.btn-primary {
+.accordion-button:not(.collapsed) {
+    background-color: #f4d97e;
+    color: #544515;
+    font-size: 0.5em;
+    font-weight: bold;
+}
+
+.accordion-button {
+    background-color: #f4d97e;
+    color: #544515;
+    font-size: 0.5em;
+    font-weight: bold;
+}
+
+.btn-primary:link  {
+    background-color: #9d6930;
+    border-color: #9d6930;
+}
+
+.btn-primary:visited {
     background-color: #9d6930;
     border-color: #9d6930;
 }
