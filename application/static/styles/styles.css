@@ -22,20 +22,15 @@ table, th, td {
 
 td {
     color: #544515;
-    text-align: center;
+    text-align: left;
 }
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
      background-color: #eeb633;
-     text-align: center;
+     text-align: left;
      color: #9d6930;
    }
-
-#repayment_methods_table {
-    border: None;
-    text-align: left;
-}
 
 h1, h4{
     text-align: center;
@@ -59,11 +54,6 @@ h6 {
 th {
     color: #544515;
     text-align: center;
-    font-weight: bold;
-}
-
-input:placeholder-shown {
-    font-style: italic;
 }
 
 .accordion-button:not(.collapsed) {
@@ -74,11 +64,6 @@ input:placeholder-shown {
 .btn-primary {
     background-color: #9d6930;
     border-color: #9d6930;
-}
-
-footer {
-    text-align: left;
-    font-size: 0.5em;
 }
 
 img {
