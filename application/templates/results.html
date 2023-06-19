@@ -34,11 +34,6 @@
                         <i>pay off the debt with the <span>highest interest</span> first</i>
                         <br>
                         <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Debt Stack</th>
-                                </tr>
-                            </thead>
                             <tbody>
                             {% for object_instance in stack_dict.values() %}
                             <tr>
@@ -64,11 +59,6 @@
                         <i>pay off the <span>smallest debt</span> first</i>
                         <br>
                         <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Debt Snowball</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 {% for object_instance in snowball_dict.values() %}
                                 <tr>
@@ -94,11 +84,6 @@
                         <i>pay off the <span>biggest debt</span> first</i>
                         <br>
                         <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Debt Avalanche</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 {% for object_instance in avalanche_dict.values() %}
                                 <tr>
