@@ -15,7 +15,11 @@ Limitations:
 - This app uses basic GCSE maths, it does not calculate compound interest or give the user an option to __top-up__ repayments, and 3 debts must be entered for the calculation to run.
 - This app does not handle negative interest rates.
 
-This is the results page generated:
+This is the full results page generated:
+
+![Image - Results page from debt comparison app](./application/static/images/debt_comparison_small.png)
+
+The page is now mobile screen sized so the results can no longer be viewed all on a single page, however earlier in the design phase they could be and here is what they looked like.
 ![Image - Results page from debt comparison app](./application/static/images/debtcomparison.jpg)
 
 ===
