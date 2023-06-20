@@ -1,5 +1,9 @@
 # Debt Comparison
 
+```bash
+docker pull annwyl21/debt_comparison
+```
+
 ## To compare debts in order to identify the fastest repayment method
 
 This calculator was developed solely by me, as part of a larger group project to create a financial advice website.
