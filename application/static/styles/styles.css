@@ -69,20 +69,20 @@ th {
 }
 
 .accordion-item {
-    background-color: #f4d97e;
+    background: #f4d97e;
     color: #e43e26;
     font-size: 0.85em;
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #f4d97e;
+    background: #f4d97e;
     color: #544515;
     font-size: 0.5em;
     font-weight: bold;
 }
 
 .accordion-button {
-    background-color: #f4d97e;
+    background: #f4d97e;
     color: #544515;
     font-size: 0.5em;
     font-weight: bold;
