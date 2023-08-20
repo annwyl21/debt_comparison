@@ -1,13 +1,13 @@
 FROM python
 
-WORKDIR /app
+WORKDIR /code
 
-ENV PORT 5000
-EXPOSE 5000
+COPY requirements.txt .
 
-COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+EXPOSE 50505
+
+ENTRYPOINT [ "gunicorn", "app:app" ]
