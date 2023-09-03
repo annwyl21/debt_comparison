@@ -8,26 +8,32 @@
 </div>
 
 <div class="main">
-  <button id="disclaimer" class="btn-disclaimer" onclick="disclaimer()">Click to read disclaimer</button>
+  <div>
+    <button id="disclaimer" class="btn-disclaimer" onclick="disclaimer()">Click to read disclaimer</button>
+  </div>
 
-  <table id="repayment_methods_table">
-    <tbody>
-      <tr>
-        <td><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}"></td>
-        <td><span>STACK</span><br>pay highest interest rate first</td>
-      </tr>
-      <tr>
-        <td><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}"></td>
-        <td><span>SNOWBALL</span><br>pay smallest debt first</td>
-      </tr>
-      <tr>
-        <td><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"></td>
-        <td><span>AVALANCHE</span><br>pay largest debt first</td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table id="table">
+      <tbody>
+        <tr>
+          <td><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}"></td>
+          <td><span>STACK</span><br>pay highest interest rate first</td>
+        </tr>
+        <tr>
+          <td><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}"></td>
+          <td><span>SNOWBALL</span><br>pay smallest debt first</td>
+        </tr>
+        <tr>
+          <td><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"></td>
+          <td><span>AVALANCHE</span><br>pay largest debt first</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <button id="getStarted" class="btn"><a href="./debt_comparison_form">Get Started</a></button>
+  <div>
+    <button id="getStarted" class="btn"><a href="./debt_form">Get Started</a></button>
+  </div>
 
 </div>
 

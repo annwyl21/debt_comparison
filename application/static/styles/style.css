@@ -39,6 +39,11 @@ h1, h4 {
 
 .btn-disclaimer {
 	background-color: rgb(179, 177, 177);
+	color: var(--links);
+	border-radius: 15px;
+	border: 1px solid var(--links);
+	font-weight: 100;
+	padding: 8px, 10px;
 }
 
 .btn {
@@ -52,6 +57,7 @@ h1, h4 {
 
 #disclaimer {
 	font-size: 0.75rem;
+	align-self: center;
 }
 
 :any-link {

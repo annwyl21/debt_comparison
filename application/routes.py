@@ -3,12 +3,34 @@ from application import app
 from application.debt import Debt
 from application.bundle import Bundle
 from application.forms import ComparisonForm
+from application.debt_entry_form import DebtEntryForm
 
 bundle = Bundle()
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/debt_form', methods=['GET', 'POST'])
+def debt_entry():
+    error = ''
+    form = DebtEntryForm()
+
+    if request.method == 'POST':
+        identifier = form.identifier.data
+        amount = form.amount.data
+        min_repayment = form.min_repayment.data
+        interest_rate = form.interest_rate.data
+
+        if not identifier or not amount or not min_repayment or not interest_rate:
+            error = 'Please enter a debt name, amount, interest rate and minimum repayment, calculations and results set are based on the data supplied'
+        
+        else:
+            # add the debts to a debt object and create a record
+            # maybe need a count variable to assign identifiers to the debts
+            # need to carry a variable for the sample data
+            return render_template('debt_summary.html')
+    return render_template('debt_form.html', form=form, message=error)
 
 @app.route('/debt_comparison_form', methods=['GET', 'POST'])
 def debt_comparison():
