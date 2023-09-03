@@ -41,7 +41,7 @@
     <div class="col-sm-12">
       <br>
       <div class="text-center">
-        <button id="disclaimer" type="button" class="btn btn-danger" onclick="disclaimer()">Click to read Disclaimer</button>
+        <button id="disclaimer" type="button" class="btn btn-danger" onclick="disclaimer()">Click to read DISCLAIMER</button>
       </div>
     </div>
   </div>
@@ -49,3 +49,8 @@
 
 
 {% endblock %}
+<script>
+  document.getElementById('disclaimer').addEventListener('click', disclaimerPopUp(){
+      confirm("DISCLAIMER: This website was designed by a student programmer with the purpose of demonstrating ability to use object-oriented programming in Python. While useful, I am neither qualified to or able to offer any financial advice. That said, in my experience cutting out coffee won't help buy a house - drink coffee and enjoy life as best you can.");
+  });
+</script>
