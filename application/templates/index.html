@@ -1,56 +1,34 @@
 {% extends "layout.html" %}
 
 {% block main_content %}
- 
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Simple Debt Repayment Methods</h1>
-      <h4>Which is Cheaper/ Faster/ Easier?</h4>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <a class="btn btn-primary" href="./debt_comparison_form" role="button">Enter debts</a>
-    </div>
-  </div>
+<div class="header">
+  <h1>Simple Debt Repayment Methods</h1>
+  <h4>Which is Cheaper/ Faster/ Easier?</h4>
+</div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <br>
-      <table id="repayment_methods_table">
-        <tbody>
-          <tr>
-            <td><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}"></td>
-            <td><span>STACK</span><br>pay highest interest rate first</td>
-          </tr>
-          <tr>
-            <td><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}"></td>
-            <td><span>SNOWBALL</span><br>pay smallest debt first</td>
-          </tr>
-          <tr>
-            <td><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"></td>
-            <td><span>AVALANCHE</span><br>pay largest debt first</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-sm-12">
-      <br>
-      <div class="text-center">
-        <button id="disclaimer" type="button" class="btn btn-danger" onclick="disclaimer()">Click to read DISCLAIMER</button>
-      </div>
-    </div>
-  </div>
+<div class="main">
+  <button id="disclaimer" class="btn-disclaimer" onclick="disclaimer()">Click to read disclaimer</button>
 
+  <table id="repayment_methods_table">
+    <tbody>
+      <tr>
+        <td><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}"></td>
+        <td><span>STACK</span><br>pay highest interest rate first</td>
+      </tr>
+      <tr>
+        <td><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}"></td>
+        <td><span>SNOWBALL</span><br>pay smallest debt first</td>
+      </tr>
+      <tr>
+        <td><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"></td>
+        <td><span>AVALANCHE</span><br>pay largest debt first</td>
+      </tr>
+    </tbody>
+  </table>
 
+  <button id="getStarted" class="btn"><a href="./debt_comparison_form">Get Started</a></button>
+
+</div>
 
 {% endblock %}
-<script>
-  document.getElementById('disclaimer').addEventListener('click', disclaimerPopUp(){
-      confirm("DISCLAIMER: This website was designed by a student programmer with the purpose of demonstrating ability to use object-oriented programming in Python. While useful, I am neither qualified to or able to offer any financial advice. That said, in my experience cutting out coffee won't help buy a house - drink coffee and enjoy life as best you can.");
-  });
-</script>
