@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+
+<div class="main">
+	<h1>Debt Summary</h1>
+
+	<p>
+		{% for num, debt_instance in enumerate(debt_list, 1) %}
+
+		Debt {{ num debt_instance.get_identifier() }}
+		Amount:  &pound;{{ '%.2f' % debt_instance.get_amount() }}
+		Rate of Interest %APR: {{ debt_instance.get_interest() }}% APR
+		Minimum Repayment: &pound;{{ '%.2f' debt_instance.get_min_repayment() }}
+
+		{% endfor %}
+	</p>
+</div>
+<br>
+<div>
+    <button id="getStarted" class="btn"><a href="./debt_form">Add another debt</a></button>
+</div>
+<br>
+<div>
+    <button id="calculate" class="btn"><a href="./results">Calculate my debts</a></button>
+</div>
+
+{% endblock %}
