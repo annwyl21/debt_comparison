@@ -5,6 +5,7 @@ class Calculator:
 		self.debt_list = []
 		self.used_names = []
 		self.total_min_repayment = 0
+		self.total_repayment = 0
 	
 	def add_debt_to_list(self, debt_dictionary):
 		self.debt_list.append(debt_dictionary)
@@ -15,6 +16,10 @@ class Calculator:
 	
 	def get_total(self):
 		return self.total_min_repayment
+	
+	def set_total_repayment(self, repayment_commitment):
+		self.total_repayment = repayment_commitment
+
 	
 	def stack_sorter(self):
 		# organises the debts by interest rate (largest first)
@@ -33,6 +38,27 @@ class Calculator:
 		avalanche = self.debt_list
 		debt_avalanche = sorted(avalanche, key=lambda debt: debt['amount'], reverse=True)
 		print(debt_avalanche)
+	
+	def comparison_calc(self, repayment_method):
+		# rewrite this so that you pay each debt, every month and put the left overs towards the stack etc
+		num_of_months = 0
+		extra_repayment = 0
+		left_over = 0
+		for debt in list_of_debts:
+			balance = debt.get_amount()
+			repayment = debt.get_repayment()
+			try:
+				while balance > 0:
+					if balance < repayment:
+						left_over = repayment - balance
+						balance = 0
+						balance = balance - repayment - extra_repayment - left_over
+						left_over = 0
+						num_of_months += 1
+			except Exception as ex:
+				raise ValueError("False argument in comparison_calc")
+			debt.set_comparison_type_months(num_of_months, comparison_type)
+            extra_repayment += repayment
 
 if __name__ == '__main__':
 	MrsTester = Calculator()

@@ -48,6 +48,7 @@ def debt_summary():
             error = 'Please enter a number larger than your required minimum repayment total'
         
         else:
+            calculateDebt.set_total_repayment(repayment_commitment)
             return render_template('results.html')
     return render_template('debt_summary.html', debts=list_of_debt_dicts, total=total)
 
