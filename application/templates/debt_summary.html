@@ -6,13 +6,9 @@
 	<h1>Debt Summary</h1>
 
 	<p>
-		{% for num, debt_instance in enumerate(debt_list, 1) %}
-
-		Debt {{ num debt_instance.get_identifier() }}
-		Amount:  &pound;{{ '%.2f' % debt_instance.get_amount() }}
-		Rate of Interest %APR: {{ debt_instance.get_interest() }}% APR
-		Minimum Repayment: &pound;{{ '%.2f' debt_instance.get_min_repayment() }}
-
+		{% for dictionary in debts %}
+		Debt Name: {{ dictionary['identifier']}}<br>
+		&pound;{{ '%.2f' % dictionary['amount'] }}<br>with {{ dictionary['interest'] }}%APR and repayments of &pound;{{ dictionary['repayment'] }}<br>
 		{% endfor %}
 	</p>
 </div>
