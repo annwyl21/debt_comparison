@@ -6,7 +6,6 @@ from application.bundle import Bundle
 from application.calculator import Calculator
 from application.forms import ComparisonForm
 from application.debt_entry_form import DebtEntryForm
-import random
 
 bundle = Bundle()
 calculateDebt = Calculator()
@@ -18,11 +17,9 @@ def index():
 @app.route('/debt_form', methods=['GET', 'POST'])
 def debt_entry():
     error = ''
-    randomNum = randint(1000, 9999)
     form = DebtEntryForm()
 
     if request.method == 'POST':
-        debt_id = randomNum
         identifier = form.identifier.data
         amount = form.amount.data
         min_repayment = form.min_repayment.data
@@ -32,15 +29,30 @@ def debt_entry():
             error = 'Please enter a debt name, amount, interest rate and minimum repayment, calculations and results set are based on the data supplied'
         
         else:
-            debt_id = {'identifier': identifier, 'amount': amount, 'interest': interest_rate, 'repayment': min_repayment}
-            calculateDebt.add_debt_to_list(debt_id)
-            list_of_debt_dicts = calculateDebt.get_debt_list()
-            return render_template('debt_summary.html', debts=list_of_debt_dicts)
+            calculateDebt.add_debt_to_list({'identifier': identifier, 'amount': amount, 'interest': interest_rate, 'repayment': min_repayment})
+            return render_template('next.html')
             
     return render_template('debt_form.html', form=form, message=error)
 
-# @app.route('/results')
-# def results():
+@app.route('/debt_summary')
+def debt_summary():
+    list_of_debt_dicts = calculateDebt.get_debt_list()
+    total = calculateDebt.get_total()
+    error = ''
+    form = DebtEntryForm()
+
+    if request.method == 'POST':
+        repayment_commitment = form.repayment_commitment.data
+
+        if repayment_commitment < total:
+            error = 'Please enter a number larger than your required minimum repayment total'
+        
+        else:
+            return render_template('results.html')
+    return render_template('debt_summary.html', debts=list_of_debt_dicts, total=total)
+
+@app.route('/results')
+def results():
             
 #             # UNPARCEL THE DEBTS, WIZARD THEM AND SEND BACK THE DATA
 

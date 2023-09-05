@@ -17,8 +17,28 @@
     <button id="getStarted" class="btn"><a href="./debt_form">Add another debt</a></button>
 </div>
 <br>
-<div>
-    <button id="calculate" class="btn"><a href="./results">Calculate my debts</a></button>
-</div>
+Current Minimum Repayments add up to {{ total }}
+Enter a monthly total that you can commit to repaying.
+This number MUST be equal to or bigger than the total minimum repayment of {{ total }}.
+<fieldset>
+	<legend>
+		Repayment Commitment
+	</legend>
+
+	{{ message }}
+
+	<div class="form">
+		<form method="POST" action =''>
+			{{ form.hidden_tag() }}
+
+			<label for="repayment_commitment">Repayment Commitment £</label><br>
+			<input type="number" id="repayment_commitment" name="repayment_commitment">
+			<br><br>
+
+			<button type="submit" class="btn submit">Calculate</button>
+
+		</form>
+	</div>
+</fieldset>
 
 {% endblock %}

@@ -9,4 +9,6 @@ class DebtEntryForm(FlaskForm):
     
     submit = SubmitField('Submit')
 
+    repayment_commitment = IntegerField('Repayment Commitment')
+
 # Each debt is entered, the data is saved in the program only (no database or local storage)
