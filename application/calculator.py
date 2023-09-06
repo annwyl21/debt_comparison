@@ -74,7 +74,7 @@ class Calculator:
 				for index in range(len(my_debt_list)-1):
 					debt_to_check = my_debt_list[index]
 					if debt_to_check['balance'] > 0:
-						debt['balance'] = debt['balance'] - repayment
+						debt_to_check['balance'] = debt_to_check['balance'] - repayment
 						repayment = 0 # handle the extra money, the pennies left etc
 
 		return my_debt_list
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 	#MrsTester.snowball_sorter()
 	#MrsTester.avalanche_sorter()
 
-	MrsTester.set_total_repayment(350) # Mrs Tester decides how much she can afford, not alot it is just the minimum balance required!
+	MrsTester.set_total_repayment(1350) # Mrs Tester decides how much she can afford, not alot it is just the minimum balance required!
 
 	# test comparisoncalc
 	debts_paid = MrsTester.comparison_calc('stack_approach')
