@@ -57,26 +57,25 @@ class Calculator:
 			debt[repayment_method] = 0
 		
 		# cycle through the debts until they are paid and handle the extra repayments
-		# find the last debt in the list
-		last_debt = my_debt_list[-1] 
-		while last_debt['balance'] > 0: # BUG while any of the debt balances are above 0 keep paying them, not sure how to write that as while loop
-			repayment = self.total_repayment
-			for debt in my_debt_list:
-				if debt['balance'] > debt['repayment']:
-					debt['balance'] = debt['balance'] - debt['repayment'] # pay off the minimum balance
-					repayment = repayment - debt['repayment'] # reduce the monthly repayment by paid amount
-					debt[repayment_method] = debt[repayment_method] + 1 # add 1 to the count of months
-					print(debt['identifier'], debt['balance'], debt['stack_approach'])
-				else:
-					final_payment = debt['balance']
-					debt['balance'] = debt['balance'] - final_payment
-					repayment - final_payment
-			# add a 2nd for loop to check the balance and ay the extra money towards each debt in turn
-			for index in range(len(my_debt_list)-1):
-				debt_to_check = my_debt_list[index]
-				if debt_to_check['balance'] > 0:
-					debt['balance'] = debt['balance'] - repayment
-					repayment = 0 # handle the extra money, the pennies left etc
+		for my_debt in my_debt_list[:-1]: # until all the debts are paid
+			while my_debt['balance'] >0:
+				repayment = self.total_repayment
+				for debt in my_debt_list:
+					if debt['balance'] > debt['repayment']:
+						debt['balance'] = debt['balance'] - debt['repayment'] # pay off the minimum balance
+						repayment = repayment - debt['repayment'] # reduce the monthly repayment by paid amount
+						debt[repayment_method] = debt[repayment_method] + 1 # add 1 to the count of months
+						print(debt['identifier'], debt['balance'], debt['stack_approach'])
+					else:
+						final_payment = debt['balance']
+						debt['balance'] = debt['balance'] - final_payment
+						repayment - final_payment
+				# add a 2nd for loop to check the balance and ay the extra money towards each debt in turn
+				for index in range(len(my_debt_list)-1):
+					debt_to_check = my_debt_list[index]
+					if debt_to_check['balance'] > 0:
+						debt['balance'] = debt['balance'] - repayment
+						repayment = 0 # handle the extra money, the pennies left etc
 
 		return my_debt_list
 
