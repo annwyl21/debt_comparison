@@ -65,7 +65,6 @@ class Calculator:
 						debt['balance'] = debt['balance'] - debt['repayment'] # pay off the minimum balance
 						repayment = repayment - debt['repayment'] # reduce the monthly repayment by paid amount
 						debt[repayment_method] = debt[repayment_method] + 1 # add 1 to the count of months
-						print(debt['identifier'], debt['balance'], debt['stack_approach'])
 					else:
 						final_payment = debt['balance']
 						debt['balance'] = debt['balance'] - final_payment
@@ -89,7 +88,7 @@ if __name__ == '__main__':
 	#MrsTester.snowball_sorter()
 	#MrsTester.avalanche_sorter()
 
-	MrsTester.set_total_repayment(1350) # Mrs Tester decides how much she can afford, not alot it is just the minimum balance required!
+	MrsTester.set_total_repayment(350) # Mrs Tester decides how much she can afford, not alot it is just the minimum balance required!
 
 	# test comparisoncalc
 	debts_paid = MrsTester.comparison_calc('stack_approach')
