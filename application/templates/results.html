@@ -4,23 +4,30 @@
 
 <div class="main">
     <h1>Results</h1>
-    <img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" alt="woman solving debt problems">
+    <img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" alt="woman solving debt problems" width="200px">
     <h4>Which debt repayment approach<br>is better for you?</h4>
 
     <h3>Debt Summary</h3>
+
     {% for debt in debt_list %}
     <p>Debt Id: {{ debt['identifier'] }}</p>
     <p>Debt Amount: &pound;{{ '%.2f' % debt['amount'] }}</p>
     <p>Minimum Monthly Repayment: {{ '%.2f' % debt['repayment'] }}</p>
+    {% endfor %}
 
     <p>Stack Approach</p>
-    <p>{{ debt['identifier'] }} will be paid in {{ debt['stack'] }} months ({{ debt['stack']/12}} years)</p>
+    {% for debt in debt_list %}
+    <p>{{ debt['identifier'] }} will be paid in {{ debt['stack_approach'] }} months</p>
+    {% endfor %}
 
     <p>Snowball Approach</p>
-    <p>{{ debt['identifier'] }} will be paid in {{ debt['snowball'] }} months ({{ debt['stack']/12}} years)</p>
+    {% for debt in debt_list %}
+    <p>{{ debt['identifier'] }} will be paid in {{ debt['snowball_approach'] }} months</p>
+    {% endfor %}
 
     <p>Avalanche Approach</p>
-    <p>{{ debt['identifier'] }} will be paid in {{ debt['avalanche'] }} months ({{ debt['stack']/12}} years)</p>
+    {% for debt in debt_list %}
+    <p>{{ debt['identifier'] }} will be paid in {{ debt['avalanche_approach'] }} months</p>
 
     {% endfor %}
 

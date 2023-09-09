@@ -1,11 +1,14 @@
 from flask import render_template, request
 from random import randint
+import math
 from application import app
 from application.debt import Debt
 from application.bundle import Bundle
 from application.calculator import Calculator
 from application.forms import ComparisonForm
 from application.debt_entry_form import DebtEntryForm
+from application.repayment_form import RepaymentForm
+
 
 bundle = Bundle()
 calculateDebt = Calculator()
@@ -30,16 +33,16 @@ def debt_entry():
         
         else:
             calculateDebt.add_debt_to_list({'identifier': identifier, 'amount': amount, 'interest': interest_rate, 'repayment': min_repayment})
-            return render_template('next.html')
+            return render_template('next.html', form=form, message=error)
             
     return render_template('debt_form.html', form=form, message=error)
 
-@app.route('/debt_summary')
+@app.route('/debt_summary', methods=['GET', 'POST'])
 def debt_summary():
     list_of_debt_dicts = calculateDebt.get_debt_list()
     total = calculateDebt.get_total()
     error = ''
-    form = DebtEntryForm()
+    form = RepaymentForm()
 
     if request.method == 'POST':
         repayment_commitment = form.repayment_commitment.data
@@ -52,6 +55,7 @@ def debt_summary():
             calculateDebt.comparison_calc('stack_approach')
             calculateDebt.comparison_calc('snowball_approach')
             calculateDebt.comparison_calc('avalanche_approach')
-            return render_template('results.html', debt_list=calculateDebt.get_debt_list())
+            results = calculateDebt.get_debt_list()
+            return render_template('results.html', debt_list=results)
         
-    return render_template('debt_summary.html', debts=list_of_debt_dicts, total=total, error=error)
+    return render_template('debt_summary.html', debts=list_of_debt_dicts, total=total, form=form, error=error)

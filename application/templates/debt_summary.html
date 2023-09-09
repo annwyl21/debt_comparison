@@ -3,42 +3,51 @@
 {% block main_content %}
 
 <div class="main">
-	<h1>Debt Summary</h1>
+	<div>
+		<h1>Debt Summary</h1>
 
-	<p>
-		{% for dictionary in debts %}
-		Debt Name: {{ dictionary['identifier']}}<br>
-		&pound;{{ '%.2f' % dictionary['amount'] }}<br>with {{ dictionary['interest'] }}%APR and repayments of &pound;{{ dictionary['repayment'] }}<br>
-		{% endfor %}
-	</p>
-</div>
-<br>
-<div>
-    <button id="getStarted" class="btn"><a href="./debt_form">Add another debt</a></button>
-</div>
-<br>
-Current Minimum Repayments add up to {{ total }}
-Enter a monthly total that you can commit to repaying.
-This number MUST be equal to or bigger than the total minimum repayment of {{ total }}.
-<fieldset>
-	<legend>
-		Repayment Commitment
-	</legend>
-
-	{{ message }}
-
-	<div class="form">
-		<form method="POST" action =''>
-			{{ form.hidden_tag() }}
-
-			<label for="repayment_commitment">Repayment Commitment £</label><br>
-			<input type="number" id="repayment_commitment" name="repayment_commitment">
-			<br><br>
-
-			<button type="submit" class="btn submit">Calculate</button>
-
-		</form>
+		<p>
+			{% for dictionary in debts %}
+			Debt Name: {{ dictionary['identifier']}}<br>
+			&pound;{{ '%.2f' % dictionary['amount'] }}<br>with {{ dictionary['interest'] }}%APR and repayments of &pound;{{ dictionary['repayment'] }}<br>
+			{% endfor %}
+		</p>
 	</div>
-</fieldset>
+
+	<br>
+
+	<div>
+		<button id="getStarted" class="btn"><a href="./debt_form">Add another debt</a></button>
+	</div>
+
+	<br>
+
+	<div>
+		<p>Current Minimum Repayments Total &pound;{{ total }}<br>
+		Enter a monthly total that you can commit to repaying.<br>
+		This number MUST be equal to or bigger than the total minimum repayment of &pound;{{ total }}.</p>
+		
+		<fieldset>
+			<legend>
+				Repayment Commitment
+			</legend>
+
+			{{ message }}
+
+			<div class="form">
+				<form method="POST" action =''>
+					{{ form.hidden_tag() }}
+
+					<label for="repayment_commitment">£</label>
+					<input type="number" id="repayment_commitment" name="repayment_commitment">
+					<br><br>
+
+					<button type="submit" class="btn submit">Calculate</button>
+
+				</form>
+			</div>
+		</fieldset>
+	</div>
+</div>
 
 {% endblock %}

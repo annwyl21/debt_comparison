@@ -12,6 +12,7 @@ class Calculator:
 		self.total_min_repayment += debt_dictionary['repayment']
 
 	def get_debt_list(self):
+		print(self.debt_list)
 		return self.debt_list
 	
 	def get_total(self):
@@ -75,8 +76,11 @@ class Calculator:
 					if debt_to_check['balance'] > 0:
 						debt_to_check['balance'] = debt_to_check['balance'] - repayment
 						repayment = 0 # handle the extra money, the pennies left etc
-
+		self.debt_list = my_debt_list
 		return my_debt_list
+	
+	def convert_to_years():
+		pass
 
 if __name__ == '__main__':
 	MrsTester = Calculator()
