@@ -11,6 +11,9 @@ class Calculator:
 		self.stack_term = ''
 		self.snowball_term = ''
 		self.avalanche_term = ''
+		self.stack_placeholder = 0
+		self.snowball_placeholder = 0
+		self.avalanche_placeholder = 0
 	
 	def add_debt_to_list(self, debt_dictionary):
 		self.debt_list.append(debt_dictionary)
@@ -96,32 +99,30 @@ class Calculator:
 		return my_debt_list
 	
 	def add_years(self):
-		stack_placeholder = 0
-		snowball_placeholder = 0
-		avalanche_placeholder = 0
+
 		for debt in self.debt_list:
 			# stack
 			stack_years = math.floor(debt['stack_approach']/12)
 			stack_months = debt['stack_approach'] - (stack_years*12)
 			debt['stack_years'] = f"{stack_years} years, {stack_months} months"
-			if debt['stack_approach'] >= stack_placeholder:
-				stack_placeholder = debt['stack_approach']
+			if self.stack_placeholder <= debt['stack_approach']:
+				self.stack_placeholder = debt['stack_approach']
 				self.stack_term = debt['stack_years']
 
 			# snowball
 			snowball_years = math.floor(debt['snowball_approach']/12)
 			snowball_months = debt['snowball_approach'] - (snowball_years*12)
 			debt['snowball_years'] = f"{snowball_years} years, {snowball_months} months"
-			if debt['snowball_approach'] >= snowball_placeholder:
-				snowball_placeholder = debt['snowball_approach']
+			if debt['snowball_approach'] >= self.snowball_placeholder:
+				self.snowball_placeholder = debt['snowball_approach']
 				self.snowball_term = debt['snowball_years']
 			
 			# avalanche
 			avalanche_years = math.floor(debt['avalanche_approach']/12)
 			avalanche_months = debt['avalanche_approach'] - (avalanche_years*12)
 			debt['avalanche_years'] = f"{avalanche_years} years, {avalanche_months} months"
-			if debt['avalanche_approach'] >= avalanche_placeholder:
-				avalanche_placeholder = debt['avalanche_approach']
+			if debt['avalanche_approach'] >= self.avalanche_placeholder:
+				self.avalanche_placeholder = debt['avalanche_approach']
 				self.avalanche_term = debt['avalanche_years']
 			
 		return self.debt_list
@@ -129,7 +130,7 @@ class Calculator:
 if __name__ == '__main__':
 	MrsTester = Calculator()
 	MrsTester.add_debt_to_list({'identifier': 'test debt 1', 'amount': 1000, 'interest': 2, 'repayment': 100})
-	MrsTester.add_debt_to_list({'identifier': 'test debt 2', 'amount': 5000, 'interest': 5, 'repayment': 250})
+	MrsTester.add_debt_to_list({'identifier': 'test debt 2', 'amount': 15000, 'interest': 50, 'repayment': 250})
 
 	# test sorter
 	#MrsTester.stack_sorter()
@@ -147,3 +148,6 @@ if __name__ == '__main__':
 	
 	results = MrsTester.get_debt_list()
 	print(results)	
+
+	MrsTester.add_years()
+	print(f"If Mrs Tester paid off {MrsTester.get_total_repayment()} each month - she would be debt free in: STACK - {MrsTester.get_stack_term()}, SNOWBALL - {MrsTester.get_snowball_term()}, AVALANCHE - {MrsTester.get_avalanche_term()}")
