@@ -1,3 +1,5 @@
+import math
+
 # calculator holds the debts as dictionaries
 
 class Calculator:
@@ -12,7 +14,6 @@ class Calculator:
 		self.total_min_repayment += debt_dictionary['repayment']
 
 	def get_debt_list(self):
-		print(self.debt_list)
 		return self.debt_list
 	
 	def get_total(self):
@@ -79,8 +80,21 @@ class Calculator:
 		self.debt_list = my_debt_list
 		return my_debt_list
 	
-	def convert_to_years():
-		pass
+	def add_years(self):
+		for debt in self.debt_list:
+			# stack
+			stack_years = math.floor(debt['stack_approach']/12)
+			stack_months = debt['stack_approach'] - (stack_years*12)
+			debt['stack_years'] = f"{stack_years} years, {stack_months} months"
+			# snowball
+			snowball_years = math.floor(debt['snowball_approach']/12)
+			snowball_months = debt['snowball_approach'] - (snowball_years*12)
+			debt['snowball_years'] = f"{snowball_years} years, {snowball_months} months"
+			# avalanche
+			avalanche_years = math.floor(debt['avalanche_approach']/12)
+			avalanche_months = debt['avalanche_approach'] - (avalanche_years*12)
+			debt['avalanche_years'] = f"{avalanche_years} years, {avalanche_months} months"
+		return self.debt_list
 
 if __name__ == '__main__':
 	MrsTester = Calculator()
@@ -96,5 +110,10 @@ if __name__ == '__main__':
 
 	# test comparisoncalc
 	debts_paid = MrsTester.comparison_calc('stack_approach')
-	for debt in debts_paid:
-		print(debt['identifier'], debt['stack_approach'])
+	more_paid = MrsTester.comparison_calc('snowball_approach')
+	alternative_paid = MrsTester.comparison_calc('avalanche_approach')
+	# for debt in debts_paid:
+	# 	print(debt['identifier'], debt['stack_approach'])
+	
+	results = MrsTester.get_debt_list()
+	print(results)	

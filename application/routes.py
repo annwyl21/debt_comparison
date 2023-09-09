@@ -55,7 +55,7 @@ def debt_summary():
             calculateDebt.comparison_calc('stack_approach')
             calculateDebt.comparison_calc('snowball_approach')
             calculateDebt.comparison_calc('avalanche_approach')
-            results = calculateDebt.get_debt_list()
+            results = calculateDebt.add_years()
             return render_template('results.html', debt_list=results)
         
     return render_template('debt_summary.html', debts=list_of_debt_dicts, total=total, form=form, error=error)

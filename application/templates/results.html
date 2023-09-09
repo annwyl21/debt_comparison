@@ -3,31 +3,36 @@
 {% block main_content %}
 
 <div class="main">
-    <h1>Results</h1>
-    <img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" alt="woman solving debt problems" width="200px">
+    <div>
+        <h1>Results</h1>
+        <img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" alt="woman solving debt problems" width="200px">
+    </div>
+
+    <div>
+        <h3>Debt Summary</h3>
+
+        {% for debt in debt_list %}
+        <p>Debt Id: {{ debt['identifier'] }}</p>
+        <p>Debt Amount: &pound;{{ '%.2f' % debt['amount'] }}</p>
+        <p>Minimum Monthly Repayment: {{ '%.2f' % debt['repayment'] }}</p>
+        {% endfor %}
+    </div>
+
     <h4>Which debt repayment approach<br>is better for you?</h4>
-
-    <h3>Debt Summary</h3>
-
-    {% for debt in debt_list %}
-    <p>Debt Id: {{ debt['identifier'] }}</p>
-    <p>Debt Amount: &pound;{{ '%.2f' % debt['amount'] }}</p>
-    <p>Minimum Monthly Repayment: {{ '%.2f' % debt['repayment'] }}</p>
-    {% endfor %}
 
     <p>Stack Approach</p>
     {% for debt in debt_list %}
-    <p>{{ debt['identifier'] }} will be paid in {{ debt['stack_approach'] }} months</p>
+    <p>{{ debt['identifier'] }} will be paid in {{ debt['stack_years'] }} </p>
     {% endfor %}
 
     <p>Snowball Approach</p>
     {% for debt in debt_list %}
-    <p>{{ debt['identifier'] }} will be paid in {{ debt['snowball_approach'] }} months</p>
+    <p>{{ debt['identifier'] }} will be paid in {{ debt['snowball_years'] }}</p>
     {% endfor %}
 
     <p>Avalanche Approach</p>
     {% for debt in debt_list %}
-    <p>{{ debt['identifier'] }} will be paid in {{ debt['avalanche_approach'] }} months</p>
+    <p>{{ debt['identifier'] }} will be paid in {{ debt['avalanche_years'] }}</p>
 
     {% endfor %}
 
