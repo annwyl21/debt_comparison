@@ -8,6 +8,9 @@ class Calculator:
 		self.used_names = []
 		self.total_min_repayment = 0
 		self.total_repayment = 0
+		self.stack_term = ''
+		self.snowball_term = ''
+		self.avalanche_term = ''
 	
 	def add_debt_to_list(self, debt_dictionary):
 		self.debt_list.append(debt_dictionary)
@@ -18,6 +21,18 @@ class Calculator:
 	
 	def get_total(self):
 		return self.total_min_repayment
+	
+	def get_stack_term(self):
+		return self.stack_term
+	
+	def get_snowball_term(self):
+		return self.stack_term
+	
+	def get_avalanche_term(self):
+		return self.stack_term
+	
+	def get_total_repayment(self):
+		return self.total_repayment
 	
 	def set_total_repayment(self, repayment_commitment):
 		if repayment_commitment > self.total_min_repayment:
@@ -81,19 +96,34 @@ class Calculator:
 		return my_debt_list
 	
 	def add_years(self):
+		stack_placeholder = 0
+		snowball_placeholder = 0
+		avalanche_placeholder = 0
 		for debt in self.debt_list:
 			# stack
 			stack_years = math.floor(debt['stack_approach']/12)
 			stack_months = debt['stack_approach'] - (stack_years*12)
 			debt['stack_years'] = f"{stack_years} years, {stack_months} months"
+			if debt['stack_approach'] >= stack_placeholder:
+				stack_placeholder = debt['stack_approach']
+				self.stack_term = debt['stack_years']
+
 			# snowball
 			snowball_years = math.floor(debt['snowball_approach']/12)
 			snowball_months = debt['snowball_approach'] - (snowball_years*12)
 			debt['snowball_years'] = f"{snowball_years} years, {snowball_months} months"
+			if debt['snowball_approach'] >= snowball_placeholder:
+				snowball_placeholder = debt['snowball_approach']
+				self.snowball_term = debt['snowball_years']
+			
 			# avalanche
 			avalanche_years = math.floor(debt['avalanche_approach']/12)
 			avalanche_months = debt['avalanche_approach'] - (avalanche_years*12)
 			debt['avalanche_years'] = f"{avalanche_years} years, {avalanche_months} months"
+			if debt['avalanche_approach'] >= avalanche_placeholder:
+				avalanche_placeholder = debt['avalanche_approach']
+				self.avalanche_term = debt['avalanche_years']
+			
 		return self.debt_list
 
 if __name__ == '__main__':

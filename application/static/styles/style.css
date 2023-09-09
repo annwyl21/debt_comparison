@@ -10,7 +10,7 @@ body {
 	font-family: 'Poppins', sans-serif;
 	color: black;
 	background-color: snow;
-	margin: 0px;
+	margin: 10px;
 	height: 100vh;
 }
 
@@ -63,7 +63,7 @@ h1, h4 {
 :any-link {
 	color: var(--links);
 	text-decoration: none;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	font-weight: 100;
 }
 
@@ -77,3 +77,28 @@ img {
 	border-radius: 10px;
 }
 
+.summary table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.intro table, th, td {
+	border: none;
+	border-collapse: none;
+}
+
+th, td {
+	padding: 15px;
+}
+
+tr {
+	text-align: center;
+}
+
+/* tr:hover {background-color: coral;} */
+
+.summary tr:nth-child(odd)>td,
+.summary tr:nth-child(odd)>th {
+     background-color: #D2D4C8;
+     color: var(--links);
+   }

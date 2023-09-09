@@ -2,10 +2,10 @@ from flask import render_template, request
 from random import randint
 import math
 from application import app
-from application.debt import Debt
-from application.bundle import Bundle
+from application.v1.debt import Debt
+from application.v1.bundle import Bundle
 from application.calculator import Calculator
-from application.forms import ComparisonForm
+from application.v1.forms import ComparisonForm
 from application.debt_entry_form import DebtEntryForm
 from application.repayment_form import RepaymentForm
 
@@ -56,6 +56,10 @@ def debt_summary():
             calculateDebt.comparison_calc('snowball_approach')
             calculateDebt.comparison_calc('avalanche_approach')
             results = calculateDebt.add_years()
-            return render_template('results.html', debt_list=results)
+            stack = calculateDebt.get_stack_term()
+            snowball = calculateDebt.get_snowball_term()
+            avalanche = calculateDebt.get_avalanche_term()
+            repay = calculateDebt.get_total_repayment()
+            return render_template('results.html', debt_list=results, stack=stack, snowball=snowball, avalanche=avalanche, repay=repay)
         
     return render_template('debt_summary.html', debts=list_of_debt_dicts, total=total, form=form, error=error)
