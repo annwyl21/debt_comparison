@@ -5,28 +5,52 @@
 <div class="main">
     <div>
         <h1>Results - &pound;{{ repay }}pcm</h1>
-        
     </div>
 
     <div>
         <p><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}"> <span>STACK Approach</span></p>
         <p>Debt free in {{ stack }}</p>
-        {% for debt in debt_list %}
-        <p>{{ debt['identifier'] }} will be paid in {{ debt['stack_years'] }} </p>
-        {% endfor %}
+        <p>Pay debt with highest interest rate first</p>
+        <ol>
+            {% for debt_name in stack_list %}
+            <li>{{ debt_name }}</li>
+            {% endfor %}
+        </ol>
 
         <p><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}"> <span>SNOWBALL Approach</span></p>
         <p>Debt free in {{ snowball }}</p>
-        {% for debt in debt_list %}
-        <p>{{ debt['identifier'] }} will be paid in {{ debt['snowball_years'] }}</p>
-        {% endfor %}
+        <p>Pay smallest debt first</p>
+        <ol>
+            {% for debt_name in snowball_list %}
+            <li>{{ debt_name }}</li>
+            {% endfor %}
+        </ol>
 
         <p><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"> <span>AVALANCHE Approach</span></p>
         <p>Debt free in {{ avalanche }}</p>
-        {% for debt in debt_list %}
-        <p>{{ debt['identifier'] }} will be paid in {{ debt['avalanche_years'] }}</p>
+        <p>Pay largest debt first</p>
+        <ol>
+            {% for debt_name in avalanche_list %}
+            <li>{{ debt_name }}</li>
+            {% endfor %}
+        </ol>
 
-        {% endfor %}
+        <table>
+            <tr>
+                <th></th>
+                <th>STACK</th>
+                <th>SNOWBALL</th>
+                <th>AVALANCHE</th>
+            </tr>
+            {% for debt in debt_list %}
+            <tr>
+                <td>{{ debt['identifier'] }}</td>
+                <td>{{ debt['stack_years'] }}</td>
+                <td>{{ debt['snowball_years'] }}</td>
+                <td>{{ debt['avalanche_years'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 
 </div>

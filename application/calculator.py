@@ -8,12 +8,12 @@ class Calculator:
 		self.used_names = []
 		self.total_min_repayment = 0
 		self.total_repayment = 0
-		self.stack_term = ''
-		self.snowball_term = ''
-		self.avalanche_term = ''
-		self.stack_placeholder = 0
-		self.snowball_placeholder = 0
-		self.avalanche_placeholder = 0
+		self.max_stack = ''
+		self.max_snowball = ''
+		self.max_avalanche = ''
+		self.stack_detail = []
+		self.snowball_detail = []
+		self.avalanche_detail = []
 	
 	def add_debt_to_list(self, debt_dictionary):
 		self.debt_list.append(debt_dictionary)
@@ -25,17 +25,20 @@ class Calculator:
 	def get_total(self):
 		return self.total_min_repayment
 	
-	def get_stack_term(self):
-		return self.stack_term
-	
-	def get_snowball_term(self):
-		return self.stack_term
-	
-	def get_avalanche_term(self):
-		return self.stack_term
-	
 	def get_total_repayment(self):
 		return self.total_repayment
+	
+	def get_max_stack(self):
+		return self.max_stack
+	
+	def get_max_snowball(self):
+		return self.max_snowball
+	
+	def get_max_avalanche(self):
+		return self.max_avalanche
+	
+	def get_stack_detail(self):
+		return self.stack_detail
 	
 	def set_total_repayment(self, repayment_commitment):
 		if repayment_commitment > self.total_min_repayment:
@@ -47,19 +50,44 @@ class Calculator:
 		# organises the debts by interest rate (largest first)
 		stack = self.debt_list
 		debt_stack = sorted(stack, key=lambda debt: debt['interest'], reverse=True)
+		for debt in debt_stack:
+			self.stack_detail.append(debt['identifier'])
 		return debt_stack
 
 	def snowball_sorter(self):
 		# organises the debts by loan size (smallest first)
 		snowball = self.debt_list
 		debt_snowball = sorted(snowball, key=lambda debt: debt['amount'])
+		for debt in debt_snowball:
+			self.snowball_detail.append(debt['identifier'])
 		return debt_snowball
 	
 	def avalanche_sorter(self):
 		# organises the debts by loan size (largest first)
 		avalanche = self.debt_list
 		debt_avalanche = sorted(avalanche, key=lambda debt: debt['amount'], reverse=True)
+		for debt in debt_avalanche:
+			self.avalanche_detail.append(debt['identifier'])
 		return debt_avalanche
+	
+	def stack_time(self):
+		# find when all debts have been repaid
+		stack = self.debt_list
+		debt_stack = sorted(stack, key=lambda debt: debt['stack_approach'], reverse=True)
+		last_debt = debt_stack[0]
+		self.max_stack = last_debt['stack_years']
+
+	def snowball_time(self):
+		snowball = self.debt_list
+		debt_snowball = sorted(snowball, key=lambda debt: debt['snowball_approach'], reverse=True)
+		last_debt = debt_snowball[0]
+		self.max_snowball = last_debt['snowball_years']
+	
+	def avalanche_time(self):
+		avalanche = self.debt_list
+		debt_avalanche = sorted(avalanche, key=lambda debt: debt['avalanche_approach'], reverse=True)
+		last_debt = debt_avalanche[0]
+		self.max_avalanche = last_debt['avalanche_years']
 	
 	def comparison_calc(self, repayment_method):
 		# rewrite this so that you pay each debt, every month and put the left overs towards the stack etc
@@ -69,13 +97,13 @@ class Calculator:
 			my_debt_list = self.snowball_sorter()
 		else:
 			my_debt_list = self.avalanche_sorter()
-
+		
 		for debt in my_debt_list:
 			# add a balance to deplete
 			debt['balance'] = debt['amount']
 			# add a key to store the number of months to repay using each method
 			debt[repayment_method] = 0
-		
+
 		# cycle through the debts until they are paid and handle the extra repayments
 		for my_debt in my_debt_list[:-1]: # until all the debts are paid
 			while my_debt['balance'] >0:
@@ -99,33 +127,30 @@ class Calculator:
 		return my_debt_list
 	
 	def add_years(self):
-
 		for debt in self.debt_list:
 			# stack
-			stack_years = math.floor(debt['stack_approach']/12)
+			stack_years = math.ceil(debt['stack_approach']/12)
 			stack_months = debt['stack_approach'] - (stack_years*12)
 			debt['stack_years'] = f"{stack_years} years, {stack_months} months"
-			if self.stack_placeholder <= debt['stack_approach']:
-				self.stack_placeholder = debt['stack_approach']
-				self.stack_term = debt['stack_years']
 
 			# snowball
-			snowball_years = math.floor(debt['snowball_approach']/12)
+			snowball_years = math.ceil(debt['snowball_approach']/12)
 			snowball_months = debt['snowball_approach'] - (snowball_years*12)
 			debt['snowball_years'] = f"{snowball_years} years, {snowball_months} months"
-			if debt['snowball_approach'] >= self.snowball_placeholder:
-				self.snowball_placeholder = debt['snowball_approach']
-				self.snowball_term = debt['snowball_years']
 			
 			# avalanche
-			avalanche_years = math.floor(debt['avalanche_approach']/12)
+			avalanche_years = math.ceil(debt['avalanche_approach']/12)
 			avalanche_months = debt['avalanche_approach'] - (avalanche_years*12)
 			debt['avalanche_years'] = f"{avalanche_years} years, {avalanche_months} months"
-			if debt['avalanche_approach'] >= self.avalanche_placeholder:
-				self.avalanche_placeholder = debt['avalanche_approach']
-				self.avalanche_term = debt['avalanche_years']
 			
 		return self.debt_list
+	
+	def debt_free(self):
+		# how long to pay all debts
+		self.stack_time()
+		self.snowball_time()
+		self.avalanche_time()
+
 
 if __name__ == '__main__':
 	MrsTester = Calculator()
@@ -150,4 +175,9 @@ if __name__ == '__main__':
 	print(results)	
 
 	MrsTester.add_years()
-	print(f"If Mrs Tester paid off {MrsTester.get_total_repayment()} each month - she would be debt free in: STACK - {MrsTester.get_stack_term()}, SNOWBALL - {MrsTester.get_snowball_term()}, AVALANCHE - {MrsTester.get_avalanche_term()}")
+	print(f"If Mrs Tester paid off {MrsTester.get_total_repayment()} each month")
+
+	MrsTester.debt_free()
+	print(MrsTester.get_max_stack())
+	print(MrsTester.get_max_snowball())
+	print(MrsTester.get_max_avalanche())
