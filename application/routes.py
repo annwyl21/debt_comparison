@@ -2,7 +2,7 @@ from flask import render_template, request
 from random import randint
 import math
 from application import app
-from application.v1.debt import Debt
+from application.debt import Debt
 from application.v1.bundle import Bundle
 from application.calculator import Calculator
 from application.v1.forms import ComparisonForm
@@ -32,7 +32,7 @@ def debt_entry():
             error = 'Please enter a debt name, amount, interest rate and minimum repayment, calculations and results set are based on the data supplied'
         
         else:
-            calculateDebt.add_debt_to_list({'identifier': identifier, 'amount': amount, 'interest': interest_rate, 'repayment': min_repayment})
+            calculateDebt.add_debt_to_list(Debt(identifier, amount, interest_rate, min_repayment))
             return render_template('next.html', form=form, message=error)
             
     return render_template('debt_form.html', form=form, message=error)
@@ -52,10 +52,12 @@ def debt_summary():
         
         else:
             calculateDebt.set_total_repayment(repayment_commitment)
-            calculateDebt.comparison_calc('stack_approach')
-            calculateDebt.comparison_calc('snowball_approach')
-            calculateDebt.comparison_calc('avalanche_approach')
+            calculateDebt.comparison_calc('stack')
+            calculateDebt.comparison_calc('snowball')
+            calculateDebt.comparison_calc('avalanche')
             results = calculateDebt.add_years()
+            for debt in debt_list
+            debt.add years()
             calculateDebt.debt_free()
             repay = calculateDebt.get_total_repayment()
             stack = calculateDebt.get_max_stack()
