@@ -57,7 +57,7 @@ def debt_summary():
             calculateDebt.comparison_calc('avalanche')
             results = calculateDebt.add_years()
             for debt in debt_list
-            debt.add years()
+                debt.add years()
             calculateDebt.debt_free()
             repay = calculateDebt.get_total_repayment()
             stack = calculateDebt.get_max_stack()
