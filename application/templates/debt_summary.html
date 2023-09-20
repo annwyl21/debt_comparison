@@ -14,12 +14,12 @@
 				<th>Min Repayment</th>
 				<th>% APR</th>
 			</tr>
-			{% for dictionary in debts %}
+			{% for debt_obj in debt_obj_list %}
 			<tr>
-				<td>{{ dictionary['identifier']}}</td>
-				<td>&pound;{{ dictionary['amount'] }}.</td>
-				<td>&pound;{{ dictionary['repayment'] }}.</td>
-				<td>{{ dictionary['interest'] }}%</td>
+				<td>{{ debt_obj.get_identifier() }}</td>
+				<td>&pound;{{ debt_obj.get_amount() }}.</td>
+				<td>&pound;{{ debt_obj.get_repayment() }}.</td>
+				<td>{{ debt_obj.get_interest() }}%</td>
 			</tr>
 			{% endfor %}
 		</table>
@@ -34,7 +34,7 @@
 	<br>
 
 	<div>
-		<p>Current Minimum Repayment:<br>Total &pound;{{ total }}<br>
+		<p>Current Minimum Repayment:<br>Total &pound;{{ total_min_repayment }}<br>
 		Enter a monthly total that you can commit to repaying.</p>
 		
 		<fieldset>
