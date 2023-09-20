@@ -69,22 +69,32 @@ class Calculator:
 				# collect repayment schedule data
 				print(each_debt.get_identifier(), each_debt.get_balance())
 				
-				# # USE EXTRA MONEY TO FOLLOW REPAYMENT APPROACH (stack, snowball, avalanche)
-				# # add a 2nd for loop to check the balances and pay any extra money each month towards the debts in turn according to their order in the list sorted by repayment approach
-				# for index in range(len(self._debt_list)-1):
-				# 	debt_to_check = self._debt_list[index]
-				# 	debt_balance = debt_to_check.get_balance()
-				# 	if debt_balance > 0:
-				# 		debt_to_check.set_balance(repayment)
-				# 		# decrease the debt balance by the repayment (above)
-				# 		# and reduce the total balance (below)
-				# 		self._total_balance -= repayment
+			# USE EXTRA MONEY TO FOLLOW REPAYMENT APPROACH (stack, snowball, avalanche)
+			# add a 2nd for loop to check the balances and pay any extra money each month towards the debts in turn according to their order in the list sorted by repayment approach
+			for index in range(len(self._debt_list)):
+				debt_to_check = self._debt_list[index-1]
+				debt_balance = debt_to_check.get_balance()
+				if debt_balance > 0:
+					if repayment > debt_balance:
+						debt_to_check.set_balance(debt_balance)
+						# pay debt in full and put the remainder towards the next debt
+						self._total_balance -= debt_balance
 
-				# 		# Note where the extra money goes
-				# 		print(f'Extra Repayment: {debt_to_check.get_identifier()}, {debt_balance}, {repayment}')
+						# Note where the extra money goes
+						print(f'Extra Repayment: {debt_to_check.get_identifier()}, {debt_to_check.get_balance()}, {debt_balance}')
 
-				# 		#monthly available repayment at this point should equal zero
-				# 		repayment = 0
+						repayment -= debt_balance
+
+					else:
+						debt_to_check.set_balance(repayment)
+					# decrease the debt balance by the repayment (above)
+					# and reduce the total balance (below)
+						self._total_balance -= repayment
+
+						# Note where the extra money goes
+						print(f'Extra Repayment: {debt_to_check.get_identifier()}, {debt_to_check.get_balance()}, {repayment}')
+
+						repayment -= repayment
 					
 
 if __name__ == '__main__':
@@ -94,7 +104,7 @@ if __name__ == '__main__':
 	debt3 = (Debt('test debt 3', 2000, 5, 150))
 
 	debt_list = [debt1, debt2, debt3]
-	repayment_commitment = 500
+	repayment_commitment = 580
 
 	MrsTester = Calculator(debt_list, repayment_commitment)
 	print(MrsTester)
