@@ -42,7 +42,7 @@ class Debt:
 		return self._balance
 	
 	def set_balance(self, repayment):
-		self._balance - repayment
+		self._balance = self._balance - repayment
 	
 	def set_stack_months(self):
 		self.stack_months +=1

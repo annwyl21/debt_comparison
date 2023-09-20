@@ -46,20 +46,12 @@ def debt_summary():
         
         else:
             calculateDebt.set_total_repayment(repayment_commitment)
-            # calculateDebt.comparison_calc('stack')
-            # calculateDebt.comparison_calc('snowball')
-            # calculateDebt.comparison_calc('avalanche')
-            # results = calculateDebt.add_years()
-            # for debt in debt_list
-            #     debt.add years()
-            # calculateDebt.debt_free()
-            # repay = calculateDebt.get_total_repayment()
-            # stack = calculateDebt.get_max_stack()
-            # snowball = calculateDebt.get_max_snowball()
-            # avalanche = calculateDebt.get_max_avalanche()
-            # stack_list = calculateDebt.get_stack_detail()
-            # snowball_list = calculateDebt.get_snowball_detail()
-            # avalanche_list = calculateDebt.get_avalanche_detail()
-            # return render_template('results.html', debt_list=results, repay=repay, stack=stack, snowball=snowball, avalanche=avalanche, stack_list = stack_list, snowball_list=snowball_list, avalanche_list=avalanche_list)
+            results = calculateDebt.comparison_calc()
+            sorted_by_stack = calculateDebt.stack_sorter()
+            stack = calculateDebt.get_repaymt_time_stack()
+            snowball = calculateDebt.get_repaymt_time_snowball()
+            avalanche = calculateDebt.get_repaymt_time_avalanche()
+
+            return render_template('results.html', debt_list=results, repayment_commitment=repayment_commitment, stack=stack, snowball=snowball, avalanche=avalanche, sorted_by_stack=sorted_by_stack)
         
     return render_template('debt_summary.html', debt_obj_list=debt_obj_list, total_min_repayment=total_min_repayment, form=form, error=error)
