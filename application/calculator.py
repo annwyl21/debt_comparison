@@ -105,7 +105,7 @@ class Calculator:
 if __name__ == '__main__':
 
 	debt1 = (Debt('test debt 1', 1000, 2, 100))
-	debt2 = (Debt('test debt 2', 15000, 50, 250))
+	debt2 = (Debt('test debt 2', 15000, 5, 250))
 	debt3 = (Debt('test debt 3', 2000, 5, 150))
 
 	debt_list = [debt1, debt2, debt3]

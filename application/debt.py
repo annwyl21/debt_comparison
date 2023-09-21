@@ -8,6 +8,7 @@ class Debt:
 		self._repayment = repayment
 
 		self._balance = amount
+		self._month_paid = -1
 
 	def get_identifier(self):
 		return self.identifier
@@ -32,6 +33,12 @@ class Debt:
 
 	def get_balance(self):
 		return self._balance
+		
+	def set_month_paid(self, months):
+		self.get_month_paid = months
+
+	def get_month_paid(self):
+		return self._month_paid
 
 if __name__ == '__main__':
 	debt1 = Debt('overdraft', 2000, 3, 80)
