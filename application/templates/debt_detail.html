@@ -5,10 +5,56 @@
 <div class="main">
     <div>
         <h1>Debt Repayment Details</h1>
+		{% if approach == 'stack' %}
+			<h4>Debt Free after {{ results.get_stack_time() }}</h4>
+		{% elif approach == 'snowball' %}
+			<h4>Debt Free after {{ results.get_snowball_time() }}</h4>
+		{% else %}
+			<h4>Debt Free after {{ results.get_avalanche_time() }}</h4>
+		{% endif %}
     </div>
 
 	<div>
-		{{ approach }}
+		{% for method, details in results.get_debt_dict().items() %}
+		{% if method == approach %}
+		<table>
+			<tr>
+				<th>Debt Name</th>
+				<th>Repaid in Full</th>
+			</tr>
+			{% for debt, repay_time in details.items() %}
+			<tr>
+				<td>{{ debt }}</td>
+				<td>{{ repay_time }} months</td>
+			</tr>
+			{% endfor %}
+		</table>
+			
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div>
+		<table class="debt_detail">
+			<tr>
+				<th></th>
+				<th>TOTAL Outstanding Balance</th>
+				<th>Pay extra £ here</th>
+				<th>Amount £</th>
+			</tr>
+			{% for method, data in results.get_repayments_dict().items() %}
+				{% if method == approach %}
+							{% for repayment_info in data %}
+							<tr>
+							<td>{{ repayment_info[0] }}</td>
+							<td>{{ repayment_info[1] }}</td>
+							<td>{{ repayment_info[2] }}</td>
+							<td>{{ repayment_info[3] }}</td>
+							</tr>
+							{% endfor %}
+				{% endif %}
+			{% endfor %}
+		</table>
 	</div>
 
 </div>

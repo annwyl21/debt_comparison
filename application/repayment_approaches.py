@@ -1,7 +1,7 @@
 from application.debt import Debt
 from application.calculator import Calculator
-# from debt import Debt
-# from calculator import Calculator
+#from debt import Debt
+#from calculator import Calculator
 
 class RepaymentApproaches:
 	def __init__(self):
@@ -12,6 +12,8 @@ class RepaymentApproaches:
 		self.stack_time_years = ''
 		self.snowball_time_years = ''
 		self.avalanche_time_years = ''
+
+		self._repayments_dict = {}
 
 		self._debt_dict = {}
 	
@@ -28,11 +30,20 @@ class RepaymentApproaches:
 	def get_debt_collection(self):
 		return self.debt_collection
 	
-	def get_debt_time(self):
+	def get_stack_time(self):
 		return self.stack_time_years
+	
+	def get_snowball_time(self):
+		return self.snowball_time_years
+	
+	def get_avalanche_time(self):
+		return self.avalanche_time_years
 	
 	def get_debt_dict(self):
 		return self._debt_dict
+	
+	def get_repayments_dict(self):
+		return self._repayments_dict
 	
 	def get_total_min_repayment(self):
 		return self.total_min_repayment
@@ -49,6 +60,7 @@ class RepaymentApproaches:
 		stack = self.stack_sorter()
 		stack_instance = Calculator(stack, self.repayment)
 		stack_instance.calculator()
+		self._repayments_dict['stack'] = stack_instance.get_repayments_list()
 		stack_results = stack_instance.get_debt_paid()
 		time_months = stack_instance.get_month_count()
 		self.stack_time_years = self.convert_months_to_years(time_months)
@@ -64,6 +76,7 @@ class RepaymentApproaches:
 		snowball = self.snowball_sorter()
 		snowball_instance = Calculator(snowball, self.repayment)
 		snowball_instance.calculator()
+		self._repayments_dict['snowball'] = snowball_instance.get_repayments_list()
 		snowball_results = snowball_instance.get_debt_paid()
 		time_months = snowball_instance.get_month_count()
 		self.snowball_time_years = self.convert_months_to_years(time_months)
@@ -79,6 +92,7 @@ class RepaymentApproaches:
 		avalanche = self.avalanche_sorter()
 		avalanche_instance = Calculator(avalanche, self.repayment)
 		avalanche_instance.calculator()
+		self._repayments_dict['avalanche'] = avalanche_instance.get_repayments_list()
 		avalanche_results = avalanche_instance.get_debt_paid()
 		time_months = avalanche_instance.get_month_count()
 		self.avalanche_time_years = self.convert_months_to_years(time_months)
@@ -107,4 +121,3 @@ if __name__ == '__main__':
 	MrsTester.set_repayment_commitment(580)
 	
 	MrsTester.run_approaches()
-	print(MrsTester)

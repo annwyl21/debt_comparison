@@ -5,13 +5,14 @@
 <div class="main">
     <div>
         <h1>Results - &pound;{{ repayment_commitment }}pcm</h1>
-        <h4>Debts Fully Repaid by {{ results.get_debt_time() }}</h4>
     </div>
 
     <div>
         <p><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}">
         <span>STACK Approach</span></p>
         <p>Pay debt with highest interest rate first</p>
+        <h4>Debts Fully Repaid by {{ results.get_stack_time() }}</h4>
+
             {% for approach, details in results.get_debt_dict().items() %}
                 {% if approach == 'stack' %}
                 <table>
@@ -35,6 +36,8 @@
         <p><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}">
         <span>SNOWBALL Approach</span></p>
         <p>Pay smallest debt first</p>
+        <h4>Debts Fully Repaid by {{ results.get_snowball_time() }}</h4>
+
         {% for approach, details in results.get_debt_dict().items() %}
         {% if approach == 'snowball' %}
         <table>
@@ -58,6 +61,8 @@
 
         <p><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"> <span>AVALANCHE Approach</span></p>
         <p>Pay largest debt first</p>
+        <h4>Debts Fully Repaid by {{ results.get_avalanche_time() }}</h4>
+
         {% for approach, details in results.get_debt_dict().items() %}
         {% if approach == 'avalanche' %}
         <table>

@@ -102,3 +102,18 @@ tr {
      background-color: #D2D4C8;
      color: var(--links);
    }
+
+.debt_detail tr:nth-child(odd)>td,
+.debt_detail tr:nth-child(odd)>th {
+	background-color: #D2D4C8;
+	color: var(--links);
+	}
+.debt_detail tr:nth-child(12n + 2){
+	background-color: coral;
+}
+.debt_detail th, td {
+	padding: 0;
+}
+.debt_detail tr {
+	text-align: left;
+}

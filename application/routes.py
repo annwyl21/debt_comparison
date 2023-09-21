@@ -54,23 +54,10 @@ def debt_summary():
     return render_template('debt_summary.html', debt_obj_list=debt_obj_list, total_min_repayment=total_min_repayment, form=form, error=error)
 
 @app.route('/<approach>')
-def debt_detail(approach):
-    # if approach == 'stack':
-    #     results = calculateDebt.stack()
-    #     title = 'Details for Stack Approach'
-    #     render_template('debt_detail.html', results=results, title=title)
-        
-    # elif approach == 'snowball':
-    #     results = calculateDebt.snowball()
-    #     title = 'Details for Snowball Approach'
-    #     render_template('debt_detail.html', results=results, title=title)
-    
-    # elif approach == 'avalanche':
-    #     results = calculateDebt.avalanche()
-    #     title = 'Details for Avalanche Approach'
-    #     render_template('debt_detail.html', results=results, title=title)
-    
-    # else:
-        render_template('debt_detail.html', approach = approach)
+def debt_details(approach):
+        approach = approach
+        title = f"{approach} repayment approach"
+        return render_template('debt_detail.html', results=calculateDebt, title=title, approach=approach)
+
     
     
