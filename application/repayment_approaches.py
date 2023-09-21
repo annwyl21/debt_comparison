@@ -24,8 +24,8 @@ class RepaymentApproaches:
 	
 	def stack(self):
 		stack = self.stack_sorter()
-		print(stack, self.repayment)
 		stack_instance = Calculator(stack, self.repayment)
+		stack_instance.calculator()
 		print(stack_instance.get_repayments_list())
 		time_months = stack_instance.get_month_count()
 		print(time_months)
