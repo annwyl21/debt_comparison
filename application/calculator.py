@@ -1,4 +1,4 @@
-# from application.debt import Debt
+#from application.debt import Debt
 from debt import Debt
 
 class Calculator:
@@ -7,16 +7,23 @@ class Calculator:
 		self._total_balance = 0
 		self._total_min_repayment = 0
 		self._total_repayment = repayment
-		self._month_count = 0
+		self._month_count = -1
+		self._repayments_list = []
 
 	def get_total_balance(self):
 		return self._total_balance
 
 	def get_total_min_repayment(self):
 		return self._total_min_repayment
+	
+	def get_month_count(self):
+		return self._month_count
+	
+	def get_repayments_list(self):
+		return self._repayments_list
 
 	def __str__(self):
-		return f"Calculator Instance holds {len(self._debt_list)} debts and a submitted Repayment Amount of £{self._total_repayment:.2f}\nValues Subsequently calculated and tracked:\nTotal Debt Balance: £{self._total_balance:,.2f}\nTotal Minimum Repayment: {self._total_min_repayment}\nTotal Month Count: {self._month_count}"
+		return f"Calculator Instance holds {len(self._debt_list)} debts and a submitted Repayment Amount of £{self._total_repayment:.2f}\nValues Subsequently calculated and tracked:\n\tTotal Debt Balance: £{self._total_balance:,.2f}\n\tTotal Minimum Repayment: {self._total_min_repayment}\n\tTotal Month Count: {self._month_count}\nRepayments Data Returned:\n\t{self._repayments_list}"
 	
 	def set_balance_repayment(self):
 		for debt in self._debt_list:
@@ -25,21 +32,19 @@ class Calculator:
 	
 	def calculator(self):
 		# set balance and repayment as sum of debt balances/ repayments in list of debt objects
+		self._month_count = 0
 		self.set_balance_repayment()
 		# reset the balance of each debt object
 		for debt in self._debt_list:
 			debt.reset_balance()
+
+		self._repayments_list.append(['Month Count', self._total_balance, 'Targeted Debt', 'Extra Repayment'])
 		
-		print('Month Count:', self._month_count)
-		print('Total Debt Balance:', self._total_balance)
-		print('Total Minimum Repayment Required:', self._total_min_repayment)
 
 		# cycle through the debts until total debt balance = 0
 		while self._total_balance > 0:
 			repayment = self._total_repayment
 			self._month_count += 1
-			print('Month Count:', self._month_count)
-			print('Total Debt Balance:', self._total_balance)
 			
 			for each_debt in self._debt_list: 
 				current_balance = each_debt.get_balance()
@@ -66,9 +71,6 @@ class Calculator:
 					# decrease the total debt balance by the repayment
 					self._total_balance -= final_payment
 				
-				# collect repayment schedule data
-				print(each_debt.get_identifier(), each_debt.get_balance())
-				
 			# USE EXTRA MONEY TO FOLLOW REPAYMENT APPROACH (stack, snowball, avalanche)
 			# add a 2nd for loop to check the balances and pay any extra money each month towards the debts in turn according to their order in the list sorted by repayment approach
 			for index in range(len(self._debt_list)):
@@ -81,7 +83,8 @@ class Calculator:
 						self._total_balance -= debt_balance
 
 						# Note where the extra money goes
-						print(f'Extra Repayment: {debt_to_check.get_identifier()}, {debt_to_check.get_balance()}, {debt_balance}')
+						if repayment > 0:
+							self._repayments_list.append([self._month_count, self._total_balance, debt_to_check.get_identifier(), repayment])
 
 						repayment -= debt_balance
 
@@ -92,10 +95,12 @@ class Calculator:
 						self._total_balance -= repayment
 
 						# Note where the extra money goes
-						print(f'Extra Repayment: {debt_to_check.get_identifier()}, {debt_to_check.get_balance()}, {repayment}')
+						if repayment > 0:
+							self._repayments_list.append([self._month_count, self._total_balance, debt_to_check.get_identifier(), repayment])
 
 						repayment -= repayment
-					
+
+		return self._repayments_list 
 
 if __name__ == '__main__':
 
@@ -107,9 +112,8 @@ if __name__ == '__main__':
 	repayment_commitment = 580
 
 	MrsTester = Calculator(debt_list, repayment_commitment)
-	print(MrsTester)
-
 	MrsTester.calculator()
 	
-	
+	#print(MrsTester)
+	print(MrsTester.get_repayments_list())
 	
