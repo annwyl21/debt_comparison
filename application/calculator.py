@@ -1,5 +1,5 @@
-#from application.debt import Debt
-from debt import Debt
+from application.debt import Debt
+#from debt import Debt
 
 class Calculator:
 	def __init__(self, debt_list, repayment):
@@ -9,6 +9,7 @@ class Calculator:
 		self._total_repayment = repayment
 		self._month_count = -1
 		self._repayments_list = []
+		self._debt_paid = {}
 
 	def get_total_balance(self):
 		return self._total_balance
@@ -21,6 +22,9 @@ class Calculator:
 	
 	def get_repayments_list(self):
 		return self._repayments_list
+	
+	def get_debt_paid(self):
+		return self._debt_paid
 
 	def __str__(self):
 		return f"Calculator Instance holds {len(self._debt_list)} debts and a submitted Repayment Amount of £{self._total_repayment:.2f}\nValues Subsequently calculated and tracked:\n\tTotal Debt Balance: £{self._total_balance:,.2f}\n\tTotal Minimum Repayment: {self._total_min_repayment}\n\tTotal Month Count: {self._month_count}\nRepayments Data Returned:\n\t{self._repayments_list}"
@@ -44,6 +48,11 @@ class Calculator:
 		# cycle through the debts until total debt balance = 0
 		while self._total_balance > 0:
 			repayment = self._total_repayment
+			#tally any paid debts
+			for d in self._debt_list:
+				if d.get_balance() == 0 and (d.get_identifier() not in self._debt_paid):
+					self._debt_paid[d.get_identifier()] = self._month_count
+			# increase the month count
 			self._month_count += 1
 			
 			for each_debt in self._debt_list: 
@@ -100,6 +109,11 @@ class Calculator:
 
 						repayment -= repayment
 
+		# add last debt to paid list
+		for d in self._debt_list:
+			if d.get_identifier() not in self._debt_paid:
+				self._debt_paid[d.get_identifier()] = self._month_count
+		
 		return self._repayments_list 
 
 if __name__ == '__main__':
@@ -114,6 +128,6 @@ if __name__ == '__main__':
 	MrsTester = Calculator(debt_list, repayment_commitment)
 	MrsTester.calculator()
 	
-	#print(MrsTester)
-	print(MrsTester.get_repayments_list())
+	print(MrsTester)
+	
 	
