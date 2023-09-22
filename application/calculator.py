@@ -1,5 +1,6 @@
 from application.debt import Debt
 #from debt import Debt
+import math
 
 class Calculator:
 	def __init__(self, debt_list, repayment):
@@ -20,32 +21,50 @@ class Calculator:
 	def get_month_count(self):
 		return self._month_count
 	
+	def set_month_count(self):
+		self._month_count += 1
+		return self._month_count
+	
 	def get_repayments_list(self):
+		# a list detailing where extra repayments were made
+		# only holds 1 approach at a time
+		# data for all 3 approaches is held in repayment approaches class
 		return self._repayments_list
 	
 	def get_debt_paid(self):
+		# holds the debt_id and the number of repayments to clear
+		# using the last approach fed through the calculator
+		# repayment approaches holds data for all the debts
 		return self._debt_paid
 
 	def __str__(self):
-		return f"Calculator Instance holds {len(self._debt_list)} debts and a submitted Repayment Amount of £{self._total_repayment:.2f}\nValues Subsequently calculated and tracked:\n\tTotal Debt Balance: £{self._total_balance:,.2f}\n\tTotal Minimum Repayment: {self._total_min_repayment}\n\tTotal Month Count: {self._month_count}\nRepayments Data Returned:\n\t{self._repayments_list}"
+		return f"Calculator Instance holds {len(self._debt_list)} debts and a submitted Repayment Amount of £{self._total_repayment:.2f}\nValues Subsequently calculated and tracked:\n\tTotal Debt Balance: £{self._total_balance:,.2f}\n\tTotal Minimum Repayment: {self._total_min_repayment}\n\tTotal Month Count: {self._month_count}\nRepayments Data Returned:\n\t{self.print_repayments()}, {self._debt_paid}"
+	
+	def print_repayments(self):
+		for month in self._repayments_list:
+			print(month)
+		return f"printed"
 	
 	def set_balance_repayment(self):
 		for debt in self._debt_list:
 			self._total_balance += debt.get_amount()
 			self._total_min_repayment += debt.get_repayment()
+	
+	def add_interest_to_total_balance(self, debt_instance):
+		# add interest to the debt
+		monthly_interest_applied = debt_instance.add_interest()
+		# increase the debt total by the extra monthly interest
+		self._total_balance += monthly_interest_applied
+		return self._total_balance
 
-	def calculate_monthly_interest(self, outstanding, apr):
-		monthly_interest_rate = apr/12
-		monthly_interest = outstanding * monthly_interest_rate
-		return monthly_interest	
 	
 	def calculator(self):
 		# set balance and repayment as sum of debt balances/ repayments in list of debt objects
 		self._month_count = 0
 		self.set_balance_repayment()
 		# reset the balance of each debt object
-		for debt in self._debt_list:
-			debt.reset_balance()
+		for debt_obj in self._debt_list:
+			debt_obj.reset_balance()
 
 		self._repayments_list.append(['Month Count', self._total_balance, 'Targeted Debt', 'Extra Repayment'])
 		
@@ -58,10 +77,10 @@ class Calculator:
 				if d.get_balance() == 0 and (d.get_identifier() not in self._debt_paid):
 					self._debt_paid[d.get_identifier()] = self._month_count
 				else:
-					monthly_interest_amount = self.calculate_monthly_interest(d.get_balance(), d.get_interest())
-					d.add_interest(monthly_interest_amount)
+					# add interest to the debt
+					self.add_interest_to_total_balance(d)
 			# increase the month count
-			self._month_count += 1
+			self.set_month_count()
 			
 			for each_debt in self._debt_list: 
 				current_balance = each_debt.get_balance()
@@ -126,12 +145,13 @@ class Calculator:
 
 if __name__ == '__main__':
 
-	debt1 = (Debt('test debt 1', 1000, 2, 100))
-	debt2 = (Debt('test debt 2', 15000, 5, 250))
-	debt3 = (Debt('test debt 3', 2000, 5, 150))
+	debt1 = (Debt('Smallest Debt', 100, 5, 5))
+	debt2 = (Debt('Largest Debt', 1000, 5, 10))
+	debt3 = (Debt('Highest Interest', 500, 50, 50))
 
 	debt_list = [debt1, debt2, debt3]
-	repayment_commitment = 580
+		# REPAYMENT COMMITMENT MUST BE ENTERED BELOW AND MUST COVER INTEREST ON DEBT
+	repayment_commitment = 100
 
 	MrsTester = Calculator(debt_list, repayment_commitment)
 	MrsTester.calculator()
