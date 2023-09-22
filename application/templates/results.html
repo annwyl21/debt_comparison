@@ -4,14 +4,22 @@
 
 <div class="main">
     <div>
-        <h1>Results - &pound;{{ repayment_commitment }}.pcm</h1>
+        <h1>Results &pound;{{ repayment_commitment }}/pcm</h1>
+        <h4>If you pay more than the minimum...<br>Does it differ which debt you pay first?</h4>
     </div>
 
-    <div>
-        <p><img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}">
-        <span>STACK Approach</span></p>
-        <p>Pay debt with highest interest rate first</p>
-        <h4>Debts Fully Repaid by {{ results.get_stack_time() }}</h4>
+    <div class="results">
+        <fieldset>
+
+        <div class="action">
+            <img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}">
+        </div>
+        <div class="action">
+            <span>STACK by interest rate</span><br>
+            {{ results.get_stack_time() }}
+        </div>
+        
+        
 
             {% for approach, details in results.get_debt_dict().items() %}
                 {% if approach == 'stack' %}
@@ -31,11 +39,14 @@
                 {% endif %}
             {% endfor %}
         
-        <button id="repaymentDetail" class="btn"><a href="./stack">See Repayment Detail</a></button>
+        <button id="repaymentDetail" class="btn"><a href="./stack">Stack Details</a></button>
+    </fieldset>
+    </div>
+
+    <div>
 
         <p><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}">
-        <span>SNOWBALL Approach</span></p>
-        <p>Pay smallest debt first</p>
+        <span>SNOWBALL tackle small debts</span></p>
         <h4>Debts Fully Repaid by {{ results.get_snowball_time() }}</h4>
 
         {% for approach, details in results.get_debt_dict().items() %}
@@ -56,11 +67,14 @@
         {% endif %}
     {% endfor %}
 
-    <button id="repaymentDetail" class="btn"><a href="./snowball">See Repayment Detail</a></button>
+    <button id="repaymentDetail" class="btn"><a href="./snowball">Snowball Details</a></button>
+
+    </div>
+
+    <div>
         
 
-        <p><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"> <span>AVALANCHE Approach</span></p>
-        <p>Pay largest debt first</p>
+        <p><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"> <span>AVALANCHE all towards the big debt</span></p>
         <h4>Debts Fully Repaid by {{ results.get_avalanche_time() }}</h4>
 
         {% for approach, details in results.get_debt_dict().items() %}
@@ -81,7 +95,7 @@
         {% endif %}
     {% endfor %}
 
-    <button id="repaymentDetail" class="btn"><a href="./avalanche">See Repayment Detail</a></button>
+    <button id="repaymentDetail" class="btn"><a href="./avalanche">Avalanche Details</a></button>
 
 
     </div>

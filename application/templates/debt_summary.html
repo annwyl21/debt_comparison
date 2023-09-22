@@ -3,10 +3,16 @@
 {% block main_content %}
 
 <div class="main">
-	<div>
-		<img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" alt="woman solving debt problems" width="150px">
-		<h1 style="text-align: left;">Debt Summary</h1>
+	<div class="summary_page">
+		<div>
+			<img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" alt="woman solving debt problems" width="150px">
+		</div>
+		<div>
+			<h1>Summary</h1>
+		</div>
+	</div>
 
+	<div>
 		<table class="summary">
 			<tr>
 				<th>Debt Name:</th>
@@ -27,7 +33,7 @@
 
 	<br>
 
-	<div>
+	<div class="action">
 		<button id="getStarted" class="btn"><a href="./debt_form">Add another debt</a></button>
 	</div>
 
@@ -35,7 +41,7 @@
 
 	<div>
 		<p>Current Minimum Repayment:<br><strong>Total &pound;{{ total_min_repayment }}</strong><br>
-		Enter a monthly total that you can commit to repaying.</p>
+		How much <span>extra</span> can you afford to pay ?</p>
 		
 		<fieldset>
 			<legend>
@@ -47,13 +53,15 @@
 			<div class="form">
 				<form method="POST" action =''>
 					{{ form.hidden_tag() }}
-
-					<label for="repayment_commitment">£</label>
-					<input type="number" id="repayment_commitment" name="repayment_commitment">
-					<br><br>
-
-					<button type="submit" class="btn submit">Calculate</button>
-
+					<div class="repayment_form">
+						<div>
+							<label for="repayment_commitment">£</label>
+							<input type="number" id="repayment_commitment" name="repayment_commitment">
+						</div>
+						<div class="calculate">
+							<button type="submit" class="btn submit" style="align-self: center;">Calculate</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</fieldset>

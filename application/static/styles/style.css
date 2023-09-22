@@ -139,4 +139,25 @@ input::placeholder {
 	font-style: italic;
 }
 
-/* mobile first */
+.summary_page {
+	display: flex;
+	margin-bottom: 5px;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.repayment_form {
+	display: flex;
+	flex-direction: column;
+}
+
+.calculate {
+	align-self: flex-end;
+}
+
+.results {
+	display: flex;
+	flex-direction: column;
+}
+
+/* mobile first 385*/
