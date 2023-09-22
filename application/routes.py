@@ -16,6 +16,7 @@ def index():
 @app.route('/debt_form', methods=['GET', 'POST'])
 def debt_entry():
 	error = ''
+	input_error = ''
 	form = DebtEntryForm()
 
 	if request.method == 'POST':
@@ -29,13 +30,16 @@ def debt_entry():
 		
 		else:
 			#calculate monthly interest amount on a debt
-			suggested_min_repayment = math.ceil((amount * (interest_rate/100)) /12)
-			if min_repayment <= suggested_min_repayment:
-				error = 'Minimum Repayment entered does not appear to cover interest on debt, please re-enter'
-			calculateDebt.add_debt(Debt(identifier, amount, interest_rate, min_repayment))
-			return render_template('next.html', form=form, message=error)
+			monthly_interest = math.ceil((amount * (interest_rate/100)) /12)
+			if min_repayment > monthly_interest:
+
+				calculateDebt.add_debt(Debt(identifier, amount, interest_rate, min_repayment))
+				return render_template('next.html', form=form, message=error)
 			
-	return render_template('debt_form.html', form=form, message=error)
+			else:
+				input_error = 'Minimum Repayment entered does not appear to cover interest on debt, please re-enter'
+			
+	return render_template('debt_form.html', form=form, message=error, input_invalid=input_error)
 
 @app.route('/debt_summary', methods=['GET', 'POST'])
 def debt_summary():
@@ -54,7 +58,7 @@ def debt_summary():
 			calculateDebt.set_repayment_commitment(repayment_commitment)
 			calculateDebt.run_approaches()
 			
-			return render_template('results.html', results=calculateDebt)
+			return render_template('results.html', results=calculateDebt, repayment_commitment=repayment_commitment)
 		  
 	return render_template('debt_summary.html', debt_obj_list=debt_obj_list, total_min_repayment=total_min_repayment, form=form, error=error)
 

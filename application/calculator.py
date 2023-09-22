@@ -66,7 +66,7 @@ class Calculator:
 		for debt_obj in self._debt_list:
 			debt_obj.reset_balance()
 
-		self._repayments_list.append(['Month Count', self._total_balance, 'Targeted Debt', 'Extra Repayment'])
+		self._repayments_list.append(['Month', self._total_balance, 'Targeted Debt', 'Extra Repayment'])
 		
 
 		# cycle through the debts until total debt balance = 0
@@ -145,13 +145,13 @@ class Calculator:
 
 if __name__ == '__main__':
 
-	debt1 = (Debt('Smallest Debt', 100, 5, 5))
-	debt2 = (Debt('Largest Debt', 1000, 5, 10))
-	debt3 = (Debt('Highest Interest', 500, 50, 50))
+	debt1 = (Debt('Smallest Debt', 1000, 2, 50))
+	debt2 = (Debt('Largest Debt', 5000, 5, 150))
+	debt3 = (Debt('Highest Interest', 2500, 15, 250))
 
 	debt_list = [debt1, debt2, debt3]
 		# REPAYMENT COMMITMENT MUST BE ENTERED BELOW AND MUST COVER INTEREST ON DEBT
-	repayment_commitment = 100
+	repayment_commitment = 500
 
 	MrsTester = Calculator(debt_list, repayment_commitment)
 	MrsTester.calculator()

@@ -10,15 +10,15 @@
 		<table class="summary">
 			<tr>
 				<th>Debt Name:</th>
-				<th>&pound;</th>
+				<th>Amount &pound;</th>
 				<th>Min Repayment</th>
 				<th>% APR</th>
 			</tr>
 			{% for debt_obj in debt_obj_list %}
 			<tr>
 				<td>{{ debt_obj.get_identifier() }}</td>
-				<td>&pound;{{ debt_obj.get_amount() }}.</td>
-				<td>&pound;{{ debt_obj.get_repayment() }}.</td>
+				<td>&pound;{{  '%.2f' % debt_obj.get_amount() }}</td>
+				<td>&pound;{{  '%.2f' % debt_obj.get_repayment() }}</td>
 				<td>{{ debt_obj.get_interest() }}%</td>
 			</tr>
 			{% endfor %}

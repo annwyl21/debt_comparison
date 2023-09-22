@@ -35,11 +35,17 @@
 	</div>
 
 	<div>
+		<p>Table showing
+			<ul>
+				<li>Monthly Outstanding balance for the total sum of debt</li>
+				<li>Value of the extra cash</li>
+				<li>and Which Debt to target with the Extra Repayment</li>
+			</ul></p>
 		<table class="debt_detail">
 			<tr>
 				<th></th>
-				<th>TOTAL Outstanding Balance</th>
-				<th>Pay extra £ here</th>
+				<th>Balance</th>
+				<th></th>
 				<th>Amount £</th>
 			</tr>
 			{% for method, data in results.get_repayments_dict().items() %}
@@ -47,9 +53,9 @@
 							{% for repayment_info in data %}
 							<tr>
 							<td>{{ repayment_info[0] }}</td>
-							<td>{{ repayment_info[1] }}</td>
+							<td>&pound;{{ repayment_info[1] }}</td>
 							<td>{{ repayment_info[2] }}</td>
-							<td>{{ repayment_info[3] }}</td>
+							<td>&pound;{{ repayment_info[3] }}</td>
 							</tr>
 							{% endfor %}
 				{% endif %}
