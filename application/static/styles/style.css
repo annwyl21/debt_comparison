@@ -4,25 +4,20 @@
 	--text: #f66218;
 	--links: #e43e26;
 	--buttons: #f6621861;
+	--textgrey: rgb(69, 68, 68);
 }
 
 body {
 	font-family: 'Poppins', sans-serif;
-	color: black;
+	color: var(--textgrey);
 	background-color: snow;
 	margin: 10px;
 	height: 100vh;
 }
 
 .container {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	/* background: linear-gradient(180deg, #7d5426 15%, #8d5e2b 50%, #9d6930 100%); */
-
-}
-
-.header {
-	grid-column: span 12;
+	display: flex;
+	flex-direction: column;
 }
 
 h1, h4 {
@@ -32,18 +27,19 @@ h1, h4 {
 }
 
 .main {
-	grid-column: span 12;
-	justify-content: center;
-	align-items: center;
+	display: flex;
+	flex-direction: column;
 }
 
 .btn-disclaimer {
-	background-color: rgb(179, 177, 177);
+	background-color: whitesmoke;
 	color: var(--links);
 	border-radius: 15px;
 	border: 1px solid var(--links);
-	font-weight: 100;
+	font-weight: 400;
 	padding: 8px, 10px;
+	font-size: 1rem;
+	font-family: 'Poppins', sans-serif;
 }
 
 .btn {
@@ -57,7 +53,7 @@ h1, h4 {
 
 #disclaimer {
 	font-size: 0.75rem;
-	align-self: center;
+
 }
 
 :any-link {
@@ -117,3 +113,30 @@ tr {
 .debt_detail tr {
 	text-align: left;
 }
+
+.action {
+	align-self: center;
+}
+
+fieldset {
+	border-radius: 10px;
+	border-color: var(--links);
+}
+
+input {
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	background-color: #e43f2626;
+	accent-color: var(--buttons);
+	color: var(--textgrey);
+	font-family: 'Poppins', sans-serif;
+}
+
+input::placeholder {
+	opacity: 0.5;
+	color: var(--textgrey);
+	font-style: italic;
+}
+
+/* mobile first */

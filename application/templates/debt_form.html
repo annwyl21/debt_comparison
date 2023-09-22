@@ -3,8 +3,8 @@
 {% block main_content %}
 
 <div class="main">
-	<h1>Add Debt</h1>
-	<p>Enter details for 1 debt below:</p>
+	<h1>Add a Debt</h1>
+	
 	<fieldset>
 		<legend>
 			Debt Details
@@ -18,16 +18,16 @@
 				{{ form.hidden_tag() }}
 
 				<label for="identifier">Give your debt a name</label><br>
-				<input type="text" id="identifier" name="identifier" placeholder="e.g. Overdraft">
+				<input type="text" id="identifier" name="identifier" placeholder="Overdraft">
 				<br>
 				<label for="amount">Debt Amount £</label><br>
-				<input type="number" id="amount" name="amount">
+				<input type="number" id="amount" name="amount" placeholder="100">
 				<br>
 				<label for="interest_rate">Interest Rate APR</label><br>
-				<input type="number" id="interest_rate" name="interest_rate">
+				<input type="number" id="interest_rate" name="interest_rate" placeholder="5">
 				<br>
 				<label for="min_repayment">Minimum Repayment £</label><br>
-				<input type="number" id="min_repayment" name="min_repayment">
+				<input type="number" id="min_repayment" name="min_repayment" placeholder="25">
 				<br><br>
 				<button type="submit" class="btn submit">Add Debt</button>
 
