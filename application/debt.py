@@ -39,6 +39,9 @@ class Debt:
 
 	def get_month_paid(self):
 		return self._month_paid
+	
+	def add_interest(self, monthly_interest_amount):
+		self._balance = self._balance + monthly_interest_amount
 
 if __name__ == '__main__':
 	debt1 = Debt('overdraft', 2000, 3, 80)

@@ -33,6 +33,11 @@ class Calculator:
 		for debt in self._debt_list:
 			self._total_balance += debt.get_amount()
 			self._total_min_repayment += debt.get_repayment()
+
+	def calculate_monthly_interest(self, outstanding, apr):
+		monthly_interest_rate = apr/12
+		monthly_interest = outstanding * monthly_interest_rate
+		return monthly_interest	
 	
 	def calculator(self):
 		# set balance and repayment as sum of debt balances/ repayments in list of debt objects
@@ -48,10 +53,13 @@ class Calculator:
 		# cycle through the debts until total debt balance = 0
 		while self._total_balance > 0:
 			repayment = self._total_repayment
-			#tally any paid debts
+			# add interest or record any paid debts
 			for d in self._debt_list:
 				if d.get_balance() == 0 and (d.get_identifier() not in self._debt_paid):
 					self._debt_paid[d.get_identifier()] = self._month_count
+				else:
+					monthly_interest_amount = self.calculate_monthly_interest(d.get_balance(), d.get_interest())
+					d.add_interest(monthly_interest_amount)
 			# increase the month count
 			self._month_count += 1
 			
