@@ -15,11 +15,6 @@ body {
 	height: 100vh;
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-}
-
 h1, h4 {
 	color: var(--text);
 	text-align: center;
@@ -161,10 +156,38 @@ input::placeholder {
 	flex-direction: column;
 }
 
+.results_header {
+	display: flex;
+	flex-direction: column;
+}
+
 .display_results {
 	display:flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
+@media screen and (min-width: 400px) {
+	.container {
+		width: 750px;
+		margin: 0 auto;
+		background-color: snow;
+		display: flex;
+		flex-direction: column;
+	}
+	.results {
+		flex-direction: row;
+	}
+}
+
 /* mobile first 385*/
+/* looks too expanded after 750 */
+@media screen and (min-width: 750px) {
+	.container {
+		width: 750px;
+		margin: 0 auto;
+		background-color: snow;
+		display: flex;
+		flex-direction: column;
+	}
+}

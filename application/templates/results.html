@@ -15,7 +15,8 @@
 
     <div class="results">
         <fieldset>
-            <div class="results">
+            <legend>{{ results.get_stack_time() }}</legend>
+            <div class="results_header">
                 <div class="display_results">
                     <button id="repaymentDetail" class="btn"><a href="./stack">Stack Details</a></button>
                     <img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}">
@@ -23,8 +24,7 @@
             </div>
 
             <div style="text-align: center;">
-                <p><span>Stack by interest rate</span><br>
-                Debt free by {{ results.get_stack_time() }}</p>
+                <p><span>Stack by interest rate</span></p>
             </div>
 
             <div>
@@ -36,7 +36,8 @@
         <br>
 
         <fieldset>
-            <div class="results">
+            <legend>{{ results.get_snowball_time() }}</legend>
+            <div class="results_header">
                 <div class="display_results">
                     <button id="repaymentDetail" class="btn"><a href="./snowball">Snowball Details</a></button>
                     <img src="{{ url_for('static', filename='images/snowball_small.jpg') }}">
@@ -44,8 +45,7 @@
             </div>
 
             <div style="text-align: center;">
-                <p><span>Tackle smaller debts first</span><br>
-                Debt free by {{ results.get_snowball_time() }}</p>
+                <p><span>Tackle smaller debts first</span></p>
             </div>
 
             <div>
@@ -57,7 +57,8 @@
         <br>
 
         <fieldset>
-            <div class="results">
+            <legend>{{ results.get_avalanche_time() }}</legend>
+            <div class="results_header">
                 <div class="display_results">
                     <button id="repaymentDetail" class="btn"><a href="./avalanche">Avalanche Details</a></button>
                     <img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}">
@@ -65,8 +66,7 @@
             </div>
 
             <div style="text-align: center;">
-                <p><span>Everything towards the big debt</span><br>
-                Debt free by {{ results.get_avalanche_time() }}</p>
+                <p><span>Everything on the big debt</span></p>
             </div>
 
             <div>
