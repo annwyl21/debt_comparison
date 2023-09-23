@@ -27,6 +27,7 @@
 			<tr>
 				<td style="text-align: left;">{{ debt }}</td>
 				<td style="text-align: right;">{{ repay_time }} months</td>
+				<!-- add debt detail into this table -->
 			</tr>
 			{% endfor %}
 		</table>
@@ -40,6 +41,8 @@
 		<img src="{{ url_for('static', filename='images/debt_pie.png') }}">
 		<br>
 	</div>
+
+	<!-- add bar chart and make them side by side for bigger screens -->
 
 	<div>
 		<p>Repayments Table Details:
