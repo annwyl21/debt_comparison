@@ -4,6 +4,7 @@ from application.debt import Debt
 from application.repayment_approaches import RepaymentApproaches
 from application.debt_entry_form import DebtEntryForm
 from application.repayment_form import RepaymentForm
+from application.data_visualisation import Graphs
 import math
 
 calculateDebt = RepaymentApproaches()
@@ -57,6 +58,9 @@ def debt_summary():
 		else:
 			calculateDebt.set_repayment_commitment(repayment_commitment)
 			calculateDebt.run_approaches()
+			create_graph = Graphs(calculateDebt.get_debt_collection(), calculateDebt.get_debt_dict())
+			create_graph.create_pie()
+			create_graph.create_bar()
 			
 			return render_template('results.html', results=calculateDebt, repayment_commitment=repayment_commitment)
 		  

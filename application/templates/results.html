@@ -8,24 +8,8 @@
         <h4>If you pay more than the minimum...<br>Does it differ which debt you pay first?</h4>
     </div>
 
-    <div>
-        
-        <table class="summary">
-			<tr>
-				<th>Summary</th>
-				<th>&pound;</th>
-				<th>Repayment</th>
-				<th>APR</th>
-			</tr>
-			{% for debt_obj in results.get_debt_collection() %}
-			<tr>
-				<td>{{ debt_obj.get_identifier() }}</td>
-				<td>&pound;{{ debt_obj.get_amount() }}.</td>
-				<td>&pound;{{ debt_obj.get_repayment() }}.</td>
-				<td>{{ debt_obj.get_interest() }}%</td>
-			</tr>
-			{% endfor %}
-		</table>
+    <div class="action">
+        <img src="{{ url_for('static', filename='images/debt_pie.png') }}">
         <br>
     </div>
 
@@ -44,7 +28,7 @@
             </div>
 
             <div>
-                <!-- add graph -->
+                <img src="{{ url_for('static', filename='images/debt_bar_stack.png') }}">
             </div>
 
             <div>
