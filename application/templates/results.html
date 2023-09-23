@@ -31,20 +31,6 @@
                 <img src="{{ url_for('static', filename='images/debt_bar_stack.png') }}">
             </div>
 
-            <div>
-                {% for approach, details in results.get_debt_dict().items() %}
-                    {% if approach == 'stack' %}
-                        <table>
-                            {% for debt, repay_time in details.items() %}
-                            <tr>
-                                <td style="text-align: left;">{{ debt }}:</td>
-                                <td style="text-align: left;">{{ repay_time }} months</td>
-                            </tr>
-                            {% endfor %}
-                        </table>    
-                    {% endif %}
-                {% endfor %}
-            </div>
         </fieldset>
 
         <br>
@@ -63,23 +49,9 @@
             </div>
 
             <div>
-                <!-- add graph -->
+                <img src="{{ url_for('static', filename='images/debt_bar_snowball.png') }}">
             </div>
 
-            <div>
-                {% for approach, details in results.get_debt_dict().items() %}
-                    {% if approach == 'snowball' %}
-                        <table>
-                            {% for debt, repay_time in details.items() %}
-                            <tr>
-                                <td style="text-align: left;">{{ debt }}:</td>
-                                <td style="text-align: left;">{{ repay_time }} months</td>
-                            </tr>
-                            {% endfor %}
-                        </table>    
-                    {% endif %}
-                {% endfor %}
-            </div>
         </fieldset>
 
         <br>
@@ -98,23 +70,9 @@
             </div>
 
             <div>
-                <!-- add graph -->
+                <img src="{{ url_for('static', filename='images/debt_bar_avalanche.png') }}">
             </div>
 
-            <div>
-                {% for approach, details in results.get_debt_dict().items() %}
-                    {% if approach == 'avalanche' %}
-                        <table>
-                            {% for debt, repay_time in details.items() %}
-                            <tr>
-                                <td style="text-align: left;">{{ debt }}:</td>
-                                <td style="text-align: left;">{{ repay_time }} months</td>
-                            </tr>
-                            {% endfor %}
-                        </table>    
-                    {% endif %}
-                {% endfor %}
-            </div>
         </fieldset>
         <br>
 
