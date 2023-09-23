@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+
+<div class="main">
+	<h1>Add a Debt</h1>
+	
+	<fieldset>
+		<legend>
+			Debt Details
+		</legend>
+
+		{{ message }}
+		{{ input_invalid }}
+
+		<div class="form">
+			<form method="POST" action =''>
+				{{ form.hidden_tag() }}
+
+				<label for="identifier">Give your debt a name</label><br>
+				<input type="text" id="identifier" name="identifier" placeholder="Overdraft">
+				<br>
+				<label for="amount">Debt Amount £</label><br>
+				<input type="number" id="amount" name="amount" placeholder="100">
+				<br>
+				<label for="interest_rate">Interest Rate APR</label><br>
+				<input type="number" id="interest_rate" name="interest_rate" placeholder="5">
+				<br>
+				<label for="min_repayment">Minimum Repayment £</label><br>
+				<input type="number" id="min_repayment" name="min_repayment" placeholder="25">
+				<br><br>
+				<button type="submit" class="btn submit">Add Debt</button>
+
+			</form>
+		</div>
+	</fieldset>
+
+	<br>
+<!-- See debt summary -->
+	<div>
+    	<button id="debt_summary" class="btn"><a href="./debt_summary">See Debt Summary</a></button>
+  	</div>
+
+	<br>
+
+</div>
+
+
+{% endblock %}

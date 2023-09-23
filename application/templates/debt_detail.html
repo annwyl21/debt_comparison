@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+
+<div class="main">
+    <div>
+		{% if approach == 'stack' %}
+			<h1>Stack Repayments</h1>
+			<h4>Debt Free after {{ results.get_stack_time() }}</h4>
+
+		{% elif approach == 'snowball' %}
+			<h1>Snowball Repayments</h1>
+			<h4>Debt Free after {{ results.get_snowball_time() }}</h4>
+
+		{% else %}
+			<h1>Avalanche Repayments</h1>
+			<h4>Debt Free after {{ results.get_avalanche_time() }}</h4>
+
+		{% endif %}
+    </div>
+
+	<div>
+		{% for method, details in results.get_debt_dict().items() %}
+		{% if method == approach %}
+		<table>
+			{% for debt, repay_time in details.items() %}
+			<tr>
+				<td style="text-align: left;">{{ debt }}</td>
+				<td style="text-align: right;">{{ repay_time }} months</td>
+				<!-- add debt detail into this table -->
+			</tr>
+			{% endfor %}
+		</table>
+			
+		{% endif %}
+		{% endfor %}
+		<br>
+	</div>
+
+	<div class="action">
+		<img src="{{ url_for('static', filename='images/debt_pie.png') }}">
+		<br>
+	</div>
+
+	<!-- add bar chart and make them side by side for bigger screens -->
+
+	<div>
+		<p>Repayments Table Details:
+			<ul>
+				<li>Total Sum of Debt outstanding</li>
+				<li>Which Debt to target each month</li>
+				<li>The amount of the extra repayment</li>
+			</ul></p>
+		<table class="debt_detail">
+			<tr>
+				<th></th>
+				<th>Balance</th>
+				<th></th>
+				<th>Amount £</th>
+			</tr>
+			{% for method, data in results.get_repayments_dict().items() %}
+				{% if method == approach %}
+							{% for repayment_info in data %}
+							<tr>
+							<td>{{ repayment_info[0] }}</td>
+							<td>&pound;{{ repayment_info[1] }}</td>
+							<td>{{ repayment_info[2] }}</td>
+							<td>&pound;{{ repayment_info[3] }}</td>
+							</tr>
+							{% endfor %}
+				{% endif %}
+			{% endfor %}
+		</table>
+	</div>
+
+</div>
+
+{% endblock %}

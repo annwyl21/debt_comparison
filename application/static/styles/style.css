@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+:root {
+	--text: #f66218;
+	--links: #e43e26;
+	--buttons: #f6621861;
+	--textgrey: rgb(69, 68, 68);
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	color: var(--textgrey);
+	background-color: snow;
+	margin: 10px;
+	height: 100vh;
+}
+
+h1, h4 {
+	color: var(--text);
+	text-align: center;
+	font-weight: 500;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+}
+
+.btn-disclaimer {
+	background-color: whitesmoke;
+	color: var(--links);
+	border-radius: 15px;
+	border: 1px solid var(--links);
+	font-weight: 400;
+	padding: 8px, 10px;
+	font-size: 1rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+.btn {
+	background-color: var(--buttons);
+	color: var(--text);
+	border-radius: 15px;
+	border: 1px solid var(--links);
+	font-weight: 200;
+	padding: 8px 10px;
+}
+
+#disclaimer {
+	font-size: 0.75rem;
+
+}
+
+:any-link {
+	color: var(--links);
+	text-decoration: none;
+	font-size: 1.25rem;
+	font-weight: 100;
+}
+
+span {
+	color: var(--text);
+	font-weight: 200;
+	font-size: 1.25rem;
+}
+
+img {
+	border-radius: 10px;
+}
+
+.summary table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.intro table, th, td {
+	border: none;
+	border-collapse: none;
+}
+
+th, td {
+	padding: 15px;
+}
+
+tr {
+	text-align: center;
+}
+
+/* tr:hover {background-color: coral;} */
+
+.summary tr:nth-child(odd)>td,
+.summary tr:nth-child(odd)>th {
+     background-color: #D2D4C8;
+     color: var(--links);
+   }
+
+.debt_detail tr:nth-child(odd)>td,
+.debt_detail tr:nth-child(odd)>th {
+	background-color: #D2D4C8;
+	color: var(--links);
+	}
+.debt_detail tr:nth-child(12n + 2){
+	background-color: coral;
+}
+.debt_detail th, td {
+	padding: 0;
+}
+.debt_detail tr {
+	text-align: center;
+}
+
+.action {
+	align-self: center;
+}
+
+fieldset {
+	border-radius: 10px;
+	border-color: var(--links);
+	box-shadow: 0 4px 12px 0 rgba(124, 39, 3, 0.35);
+}
+
+input {
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	background-color: #e43f2626;
+	accent-color: var(--buttons);
+	color: var(--textgrey);
+	font-family: 'Poppins', sans-serif;
+}
+
+input::placeholder {
+	opacity: 0.5;
+	color: var(--textgrey);
+	font-style: italic;
+}
+
+.summary_page {
+	display: flex;
+	margin-bottom: 5px;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.repayment_form {
+	display: flex;
+	flex-direction: column;
+}
+
+.calculate {
+	align-self: flex-end;
+}
+
+.results {
+	display: flex;
+	flex-direction: column;
+}
+
+.results_header {
+	display: flex;
+	flex-direction: column;
+}
+
+.display_results {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+@media screen and (min-width: 400px) {
+	.container {
+		width: 750px;
+		margin: 0 auto;
+		background-color: snow;
+		display: flex;
+		flex-direction: column;
+	}
+	.results {
+		flex-direction: row;
+	}
+}
+
+/* mobile first 385*/
+/* looks too expanded after 750 */
+@media screen and (min-width: 750px) {
+	.container {
+		width: 750px;
+		margin: 0 auto;
+		background-color: snow;
+		display: flex;
+		flex-direction: column;
+	}
+}

@@ -1,91 +1,63 @@
+# holds each debt instance and adds information as the debt scenarios are executed
+import math
 class Debt:
-    def __init__(self, amount, interest, repayment):
-        self._amount = amount
-        self._interest = interest
-        self._repayment = repayment
+	
+	def __init__(self, identifier, amount, interest, repayment):
+		self.identifier = identifier
+		self._amount = amount
+		self._interest = interest
+		self._repayment = repayment
 
-        if self._amount:
-            self._amount = int(self._amount)
-        else:
-            self._amount = 0
+		self._balance = amount
+		self._month_paid = -1
 
-        if self._interest:
-            self._interest = int(self._interest)
-        else:
-            self._interest = 5
-        
-        if self._repayment:
-            self._repayment = int(self._repayment)
-        else:
-            self._repayment = 10
-            # entering a repayment of zero will break our debt calculators 
-            # (there is a while loop that continues until a loan amount is paid - reaches a zero value, if repayment = 0 it creates an infinite loop) 
-            # so we have a default repayment of 10
-        
-    def get_amount(self):
-        return self._amount
-      
-    def get_interest(self):
-        return self._interest
-       
-    def get_repayment(self):
-        return self._repayment
-    
-    def get_stack_months(self):
-        return self._stack_months
-    
-    def get_stack_years(self):
-        return self._stack_years
-    
-    def get_snowball_months(self):
-        return self._snowball_months
-    
-    def get_snowball_years(self):
-        return self._snowball_years
-    
-    def get_avalanche_months(self):
-        return self._avalanche_months
-    
-    def get_avalanche_years(self):
-        return self._avalanche_years
-    
-    def get_debt_list(self):
-        return [self._amount, self._interest, self._repayment]
+	def get_identifier(self):
+		return self.identifier
 
-    def set_stack_months(self, months):
-        self._stack_months = months
-        self._stack_years = int(months/12)
-    
-    def set_snowball_months(self, months):
-        self._snowball_months = months
-        self._snowball_years = int(months/12)
-    
-    def set_avalanche_months(self, months):
-        self._avalanche_months = months
-        self._avalanche_years = int(months/12)
-    
-    def set_comparison_type_months(self, num_of_months, comparison_type):
-        if comparison_type == 'stack':
-            self.set_stack_months(num_of_months)
-        elif comparison_type == 'snowball':
-            self.set_snowball_months(num_of_months)
-        elif comparison_type == 'avalanche':
-            self.set_avalanche_months(num_of_months)
-        else:
-            raise "I don't know the comparison_type"
-        # if all the conditions fail then raise an exception
-    
-    def comparison_dict(self):
-        return {
-            'amount': self._amount,
-            'interest': self._interest,
-            'repayment': self._repayment,
-            'stack_paid_months': self._stack_months,
-            'stack_paid_years': self._stack_years,
-            'snowball_paid_months': self._snowball_months,
-            'snowball_paid_years': self._snowball_years,
-            'avalanche_paid_months': self._avalanche_months,
-            'avalanche_paid_years': self._avalanche_years
-        }
-    
-    
+	def get_amount(self):
+		return self._amount
+
+	def get_interest(self):
+		return self._interest
+		
+	def get_repayment(self):
+		return self._repayment
+	
+	def __str__(self):
+		return f"Details of Debt Entered...\n\tDebt ID: {self.identifier}\n\tDebt Amount £{self._amount:,.2f}, APR: {self._interest}%, Minimum Monthly Repayment £{self._repayment:,.2f}\n\tDebt Balance Tracked as each approach is applied £{self._balance:,.2f}"
+	
+	def reset_balance(self):
+		self._balance = self._amount
+
+	def set_balance(self, repayment):
+		self._balance = self._balance - repayment
+		return self._balance
+
+	def get_balance(self):
+		return self._balance
+		
+	def set_month_paid(self, months):
+		self.get_month_paid = months
+
+	def get_month_paid(self):
+		return self._month_paid
+	
+	def add_interest(self):
+		outstanding_balance = self._balance
+		apr = self._interest/100
+		#calculate monthly interest amount on a debt
+		monthly_interest_amount = math.ceil((outstanding_balance * apr) /12)
+		if monthly_interest_amount > outstanding_balance:
+			raise ValueError()
+		# add that interest on to the total balance
+		self._balance = self._balance + monthly_interest_amount
+
+		return monthly_interest_amount
+
+if __name__ == '__main__':
+	debt1 = Debt('overdraft', 1000, 10, 100)
+	print(debt1)
+
+	debt1.add_interest()
+	print(debt1)
+	

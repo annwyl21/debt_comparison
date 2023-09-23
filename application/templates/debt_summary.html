@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+
+<div class="main">
+	<div class="summary_page">
+		<div>
+			<img src="{{ url_for('static', filename='images/anxious_woman.jpeg') }}" class="img-responsive margin" alt="woman solving debt problems" width="150px">
+		</div>
+		<div>
+			<h1>Summary</h1>
+		</div>
+	</div>
+
+	<div>
+		<table class="summary">
+			<tr>
+				<th>Debt</th>
+				<th>Amount</th>
+				<th>Minimum Repayment</th>
+				<th>% APR</th>
+			</tr>
+			{% for debt_obj in debt_obj_list %}
+			<tr>
+				<td>{{ debt_obj.get_identifier() }}</td>
+				<td>&pound;{{ debt_obj.get_amount() }}.</td>
+				<td>&pound;{{ debt_obj.get_repayment() }}.</td>
+				<td>{{ debt_obj.get_interest() }}%</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	<br>
+
+	<div class="action">
+		<button id="getStarted" class="btn"><a href="./debt_form">Add another debt</a></button>
+	</div>
+
+	<br>
+
+	<div>
+		<p>Current Minimum Repayment:<br><strong>Total &pound;{{ total_min_repayment }}</strong><br>
+		How much <span>extra</span> can you afford to pay ?</p>
+		
+		<fieldset>
+			<legend>
+				Repayment Commitment
+			</legend>
+
+			{{ message }}
+
+			<div class="form">
+				<form method="POST" action =''>
+					{{ form.hidden_tag() }}
+					<div class="repayment_form">
+						<div>
+							<label for="repayment_commitment">£</label>
+							<input type="number" id="repayment_commitment" name="repayment_commitment">
+						</div>
+						<div class="calculate">
+							<button type="submit" class="btn submit" style="align-self: center;">Calculate</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</fieldset>
+	</div>
+</div>
+
+{% endblock %}

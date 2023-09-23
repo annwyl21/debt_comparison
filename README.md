@@ -1,9 +1,11 @@
-# Debt Comparison
+# Debt Comparison V2 - available from this GitHub Repository (in testing)
 
+V1 available on DockerHub
 ```bash
 docker pull annwyl21/debt_comparison
 ```
 
+V1 available as an Azure Container
 Alternatively, visit my [Azure Container to try this Flask App](https://debt-comparison.wittyflower-04a4021a.westus2.azurecontainerapps.io/)
 
 ## To compare debts in order to identify the fastest repayment method
@@ -20,6 +22,7 @@ In all 3 approaches the __key to success__ is to commit a set amount of money to
 
 Limitations:
 - This app uses basic GCSE maths, it does not calculate interest or give the user an option to _top-up_ repayments, and 3 debts must be entered for the calculation to run.
+- **UPDATE** - V2 handles interest and does not limit debts entered, also displays results with charts. ![results with charts](./application/static/images/debt_charts.png)
 - This app does not handle negative interest rates.
 
 This is the full results page generated:
