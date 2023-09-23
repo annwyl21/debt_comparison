@@ -121,6 +121,7 @@ tr {
 fieldset {
 	border-radius: 10px;
 	border-color: var(--links);
+	box-shadow: 0 4px 12px 0 rgba(124, 39, 3, 0.35);
 }
 
 input {
@@ -158,6 +159,12 @@ input::placeholder {
 .results {
 	display: flex;
 	flex-direction: column;
+}
+
+.display_results {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 /* mobile first 385*/

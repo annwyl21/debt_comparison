@@ -8,95 +8,131 @@
         <h4>If you pay more than the minimum...<br>Does it differ which debt you pay first?</h4>
     </div>
 
+    <div>
+        
+        <table class="summary">
+			<tr>
+				<th>Summary</th>
+				<th>&pound;</th>
+				<th>Repayment</th>
+				<th>APR</th>
+			</tr>
+			{% for debt_obj in results.get_debt_collection() %}
+			<tr>
+				<td>{{ debt_obj.get_identifier() }}</td>
+				<td>&pound;{{ debt_obj.get_amount() }}.</td>
+				<td>&pound;{{  '%.2f' % debt_obj.get_repayment() }}</td>
+				<td>{{ debt_obj.get_interest() }}%</td>
+			</tr>
+			{% endfor %}
+		</table>
+        <br>
+    </div>
+
     <div class="results">
         <fieldset>
+            <div class="results">
+                <div class="display_results">
+                    <button id="repaymentDetail" class="btn"><a href="./stack">Stack Details</a></button>
+                    <img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}">
+                </div>
+            </div>
 
-        <div class="action">
-            <img src="{{ url_for('static', filename='images/box_stacksmall.jpg') }}">
-        </div>
-        <div class="action">
-            <span>STACK by interest rate</span><br>
-            {{ results.get_stack_time() }}
-        </div>
-        
-        
+            <div style="text-align: center;">
+                <p><span>Stack by interest rate</span><br>
+                Debt free by {{ results.get_stack_time() }}</p>
+            </div>
 
-            {% for approach, details in results.get_debt_dict().items() %}
-                {% if approach == 'stack' %}
-                <table>
-                    <tr>
-                        <th>Debt Name</th>
-                        <th>Repaid in Full</th>
-                    </tr>
-                    {% for debt, repay_time in details.items() %}
-                    <tr>
-                        <td>{{ debt }}</td>
-                        <td>{{ repay_time }} months</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                    
-                {% endif %}
-            {% endfor %}
-        
-        <button id="repaymentDetail" class="btn"><a href="./stack">Stack Details</a></button>
-    </fieldset>
-    </div>
+            <div>
+                <!-- add graph -->
+            </div>
 
-    <div>
+            <div>
+                {% for approach, details in results.get_debt_dict().items() %}
+                    {% if approach == 'stack' %}
+                        <table>
+                            {% for debt, repay_time in details.items() %}
+                            <tr>
+                                <td style="text-align: left;">{{ debt }}:</td>
+                                <td style="text-align: left;">{{ repay_time }} months</td>
+                            </tr>
+                            {% endfor %}
+                        </table>    
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </fieldset>
 
-        <p><img src="{{ url_for('static', filename='images/snowball_small.jpg') }}">
-        <span>SNOWBALL tackle small debts</span></p>
-        <h4>Debts Fully Repaid by {{ results.get_snowball_time() }}</h4>
+        <br>
 
-        {% for approach, details in results.get_debt_dict().items() %}
-        {% if approach == 'snowball' %}
-        <table>
-            <tr>
-                <th>Debt Name</th>
-                <th>Repaid in Full</th>
-            </tr>
-            {% for debt, repay_time in details.items() %}
-            <tr>
-                <td>{{ debt }}</td>
-                <td>{{ repay_time }} months</td>
-            </tr>
-            {% endfor %}
-        </table>
-            
-        {% endif %}
-    {% endfor %}
+        <fieldset>
+            <div class="results">
+                <div class="display_results">
+                    <button id="repaymentDetail" class="btn"><a href="./snowball">Snowball Details</a></button>
+                    <img src="{{ url_for('static', filename='images/snowball_small.jpg') }}">
+                </div>
+            </div>
 
-    <button id="repaymentDetail" class="btn"><a href="./snowball">Snowball Details</a></button>
+            <div style="text-align: center;">
+                <p><span>Tackle smaller debts first</span><br>
+                Debt free by {{ results.get_snowball_time() }}</p>
+            </div>
 
-    </div>
+            <div>
+                <!-- add graph -->
+            </div>
 
-    <div>
-        
+            <div>
+                {% for approach, details in results.get_debt_dict().items() %}
+                    {% if approach == 'snowball' %}
+                        <table>
+                            {% for debt, repay_time in details.items() %}
+                            <tr>
+                                <td style="text-align: left;">{{ debt }}:</td>
+                                <td style="text-align: left;">{{ repay_time }} months</td>
+                            </tr>
+                            {% endfor %}
+                        </table>    
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </fieldset>
 
-        <p><img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}"> <span>AVALANCHE all towards the big debt</span></p>
-        <h4>Debts Fully Repaid by {{ results.get_avalanche_time() }}</h4>
+        <br>
 
-        {% for approach, details in results.get_debt_dict().items() %}
-        {% if approach == 'avalanche' %}
-        <table>
-            <tr>
-                <th>Debt Name</th>
-                <th>Repaid in Full</th>
-            </tr>
-            {% for debt, repay_time in details.items() %}
-            <tr>
-                <td>{{ debt }}</td>
-                <td>{{ repay_time }} months</td>
-            </tr>
-            {% endfor %}
-        </table>
-            
-        {% endif %}
-    {% endfor %}
+        <fieldset>
+            <div class="results">
+                <div class="display_results">
+                    <button id="repaymentDetail" class="btn"><a href="./avalanche">Avalanche Details</a></button>
+                    <img src="{{ url_for('static', filename='images/avalanche_cartoon_small.jpg') }}">
+                </div>
+            </div>
 
-    <button id="repaymentDetail" class="btn"><a href="./avalanche">Avalanche Details</a></button>
+            <div style="text-align: center;">
+                <p><span>Everything towards the big debt</span><br>
+                Debt free by {{ results.get_avalanche_time() }}</p>
+            </div>
 
+            <div>
+                <!-- add graph -->
+            </div>
+
+            <div>
+                {% for approach, details in results.get_debt_dict().items() %}
+                    {% if approach == 'avalanche' %}
+                        <table>
+                            {% for debt, repay_time in details.items() %}
+                            <tr>
+                                <td style="text-align: left;">{{ debt }}:</td>
+                                <td style="text-align: left;">{{ repay_time }} months</td>
+                            </tr>
+                            {% endfor %}
+                        </table>    
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </fieldset>
+        <br>
 
     </div>
 
