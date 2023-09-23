@@ -4,24 +4,43 @@
 
 <div class="main">
     <div>
-        <h1>Debt Repayment Details</h1>
+        <h1>Repayment Details</h1>
 		{% if approach == 'stack' %}
-			<h4>Debt Free after {{ results.get_stack_time() }}</h4>
+			<h4>STACK by interest rate<br>
+			Debt Free after {{ results.get_stack_time() }}</h4>
 		{% elif approach == 'snowball' %}
+			<h4>SNOWBALL smaller debts first</h4>
 			<h4>Debt Free after {{ results.get_snowball_time() }}</h4>
 		{% else %}
+			<h4>AVALANCHE everything towards that larger debt</h4>
 			<h4>Debt Free after {{ results.get_avalanche_time() }}</h4>
 		{% endif %}
+    </div>
+
+	<div>
+        <table class="summary">
+			<tr>
+				<th>Summary</th>
+				<th>&pound;</th>
+				<th>Repayment</th>
+				<th>APR</th>
+			</tr>
+			{% for debt_obj in results.get_debt_collection() %}
+			<tr>
+				<td>{{ debt_obj.get_identifier() }}</td>
+				<td>&pound;{{ debt_obj.get_amount() }}.</td>
+				<td>&pound;{{ debt_obj.get_repayment() }}.</td>
+				<td>{{ debt_obj.get_interest() }}%</td>
+			</tr>
+			{% endfor %}
+		</table>
+        <br>
     </div>
 
 	<div>
 		{% for method, details in results.get_debt_dict().items() %}
 		{% if method == approach %}
 		<table>
-			<tr>
-				<th>Debt Name</th>
-				<th>Repaid in Full</th>
-			</tr>
 			{% for debt, repay_time in details.items() %}
 			<tr>
 				<td>{{ debt }}</td>

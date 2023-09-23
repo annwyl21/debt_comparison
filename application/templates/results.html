@@ -21,7 +21,7 @@
 			<tr>
 				<td>{{ debt_obj.get_identifier() }}</td>
 				<td>&pound;{{ debt_obj.get_amount() }}.</td>
-				<td>&pound;{{  '%.2f' % debt_obj.get_repayment() }}</td>
+				<td>&pound;{{ debt_obj.get_repayment() }}.</td>
 				<td>{{ debt_obj.get_interest() }}%</td>
 			</tr>
 			{% endfor %}
