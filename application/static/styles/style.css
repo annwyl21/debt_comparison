@@ -99,11 +99,12 @@ tr {
 	background-color: #D2D4C8;
 	color: var(--links);
 	}
-.debt_detail tr:nth-child(12n + 2){
+.debt_detail tr:nth-child(12n + 1){
 	background-color: coral;
 }
 .debt_detail th, td {
-	padding: 0;
+	padding: 5px;
+	font-weight: 300;
 }
 .debt_detail tr {
 	text-align: center;

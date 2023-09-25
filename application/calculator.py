@@ -73,7 +73,7 @@ class Calculator:
 		for debt_obj in self._debt_list:
 			debt_obj.reset_balance()
 
-		self._repayments_list.append(['Month', self._total_balance, 'Targeted Debt', 'Extra Repayment'])
+		#self._repayments_list.append(['Month', self._total_balance, 'Targeted Debt', 'Extra Repayment'])
 		
 
 		# cycle through the debts until total debt balance = 0
