@@ -13,6 +13,10 @@ class RepaymentApproaches:
 		self.snowball_time_years = ''
 		self.avalanche_time_years = ''
 
+		self.stack_cost = 0
+		self.snowball_cost = 0
+		self.avalanche_cost = 0
+
 		self._repayments_dict = {}
 
 		self._debt_dict = {}
@@ -39,6 +43,15 @@ class RepaymentApproaches:
 	def get_avalanche_time(self):
 		return self.avalanche_time_years
 	
+	def get_stack_cost(self):
+		return self.stack_cost
+	
+	def get_snowball_cost(self):
+		return self.snowball_cost
+	
+	def get_avalanche_cost(self):
+		return self.avalanche_cost
+	
 	def get_debt_dict(self):
 		return self._debt_dict
 	
@@ -49,7 +62,7 @@ class RepaymentApproaches:
 		return self.total_min_repayment
 	
 	def __str__(self):
-		return f"Calculator Instance holds {len(self.debt_collection)} debts and a submitted Repayment Amount of £{self.repayment:.2f}.\nResults:\n{self.stack_time_years}\n{self._debt_dict}"
+		return f"Calculator Instance holds {len(self.debt_collection)} debts and a submitted Repayment Amount of £{self.repayment:.2f}.\nResults:\n{self.stack_time_years}\n{self._debt_dict}\nTotal Cost of Stack Approach £{self.stack_cost}"
 	
 	def run_approaches(self):
 		self._debt_dict['stack'] = self.stack()
@@ -59,11 +72,13 @@ class RepaymentApproaches:
 	def stack(self):
 		stack = self.stack_sorter()
 		stack_instance = Calculator(stack, self.repayment)
+		stack_instance.reset_repayments_made()
 		stack_instance.calculator()
 		self._repayments_dict['stack'] = stack_instance.get_repayments_list()
 		stack_results = stack_instance.get_debt_paid()
 		time_months = stack_instance.get_month_count()
 		self.stack_time_years = self.convert_months_to_years(time_months)
+		self.stack_cost = stack_instance.get_repayments_made()
 		return stack_results
 
 	def stack_sorter(self):
@@ -75,11 +90,13 @@ class RepaymentApproaches:
 	def snowball(self):
 		snowball = self.snowball_sorter()
 		snowball_instance = Calculator(snowball, self.repayment)
+		snowball_instance.reset_repayments_made()
 		snowball_instance.calculator()
 		self._repayments_dict['snowball'] = snowball_instance.get_repayments_list()
 		snowball_results = snowball_instance.get_debt_paid()
 		time_months = snowball_instance.get_month_count()
 		self.snowball_time_years = self.convert_months_to_years(time_months)
+		self.snowball_cost = snowball_instance.get_repayments_made()
 		return snowball_results
 	
 	def snowball_sorter(self):
@@ -91,11 +108,13 @@ class RepaymentApproaches:
 	def avalanche(self):
 		avalanche = self.avalanche_sorter()
 		avalanche_instance = Calculator(avalanche, self.repayment)
+		avalanche_instance.reset_repayments_made()
 		avalanche_instance.calculator()
 		self._repayments_dict['avalanche'] = avalanche_instance.get_repayments_list()
 		avalanche_results = avalanche_instance.get_debt_paid()
 		time_months = avalanche_instance.get_month_count()
 		self.avalanche_time_years = self.convert_months_to_years(time_months)
+		self.avalanche_cost = avalanche_instance.get_repayments_made()
 		return avalanche_results
 	
 	def avalanche_sorter(self):
@@ -121,3 +140,4 @@ if __name__ == '__main__':
 	MrsTester.set_repayment_commitment(580)
 	
 	MrsTester.run_approaches()
+	print(MrsTester)

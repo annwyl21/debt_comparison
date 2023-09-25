@@ -27,6 +27,7 @@
 
             <div style="text-align: center;">
                 <p><span>Stack by interest rate</span></p>
+                <p>&pound;{{ '{:,.2f}'.format(results.get_stack_cost()) }}</p>
             </div>
 
             <div>
@@ -48,6 +49,7 @@
 
             <div style="text-align: center;">
                 <p><span>Tackle smaller debts first</span></p>
+                <p>&pound;{{ '{:,.2f}'.format(results.get_snowball_cost()) }}</p>
             </div>
 
             <div>
@@ -69,6 +71,7 @@
 
             <div style="text-align: center;">
                 <p><span>Everything on the big debt</span></p>
+                <p>&pound;{{ '{:,.2f}'.format(results.get_avalanche_cost()) }}</p>
             </div>
 
             <div>
