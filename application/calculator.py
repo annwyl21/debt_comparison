@@ -11,7 +11,7 @@ class Calculator:
 		self._month_count = -1
 		self._repayments_list = []
 		self._debt_paid = {}
-		self._repayments_made = 0
+		self._repayments_made = -1
 
 	def get_total_balance(self):
 		return self._total_balance
@@ -20,10 +20,10 @@ class Calculator:
 		return self._total_min_repayment
 	
 	def get_repayments_made(self):
-		return self.get_total_repayments
+		return self._repayments_made
 	
 	def reset_repayments_made(self):
-		self.total_repayments = 0
+		self._repayments_made = 0
 	
 	def get_month_count(self):
 		return self._month_count
@@ -45,7 +45,7 @@ class Calculator:
 		return self._debt_paid
 
 	def __str__(self):
-		return f"Calculator Instance holds {len(self._debt_list)} debts and a submitted Repayment Amount of £{self._total_repayment:.2f}\nValues Subsequently calculated and tracked:\n\tTotal Debt Balance: £{self._total_balance:,.2f}\n\tTotal Minimum Repayment: {self._total_min_repayment}\n\tTotal Month Count: {self._month_count}\nRepayments Data Returned:\n\t{self.print_repayments()}, {self._debt_paid}"
+		return f"Calculator Instance holds {len(self._debt_list)} debts and a submitted Repayment Amount of £{self._total_repayment:.2f}\nValues Subsequently calculated and tracked:\n\tTotal Debt Balance: £{self._total_balance:,.2f}\n\tTotal Minimum Repayment: {self._total_min_repayment}\n\tTotal Month Count: {self._month_count}\nRepayments Data Returned:\n\t{self.print_repayments()}, {self._debt_paid}\nTotal Repayment Cost £{self.get_repayments_made()}"
 	
 	def print_repayments(self):
 		for month in self._repayments_list:

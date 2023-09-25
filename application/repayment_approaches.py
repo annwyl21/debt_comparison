@@ -44,13 +44,13 @@ class RepaymentApproaches:
 		return self.avalanche_time_years
 	
 	def get_stack_cost(self):
-		return self.stack_cost()
+		return self.stack_cost
 	
 	def get_snowball_cost(self):
-		return self.snowball_cost()
+		return self.snowball_cost
 	
 	def get_avalanche_cost(self):
-		return self.avalanche_cost()
+		return self.avalanche_cost
 	
 	def get_debt_dict(self):
 		return self._debt_dict
@@ -62,7 +62,7 @@ class RepaymentApproaches:
 		return self.total_min_repayment
 	
 	def __str__(self):
-		return f"Calculator Instance holds {len(self.debt_collection)} debts and a submitted Repayment Amount of £{self.repayment:.2f}.\nResults:\n{self.stack_time_years}\n{self._debt_dict}"
+		return f"Calculator Instance holds {len(self.debt_collection)} debts and a submitted Repayment Amount of £{self.repayment:.2f}.\nResults:\n{self.stack_time_years}\n{self._debt_dict}\nTotal Cost of Stack Approach £{self.stack_cost}"
 	
 	def run_approaches(self):
 		self._debt_dict['stack'] = self.stack()
@@ -140,3 +140,4 @@ if __name__ == '__main__':
 	MrsTester.set_repayment_commitment(580)
 	
 	MrsTester.run_approaches()
+	print(MrsTester)
