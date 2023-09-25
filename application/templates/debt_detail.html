@@ -7,14 +7,20 @@
 		{% if approach == 'stack' %}
 			<h1>Stack Repayments</h1>
 			<h4>Debt Free after {{ results.get_stack_time() }}</h4>
+			<p>&pound;{{ '{:,.2f}'.format(results.get_stack_cost()) }}</p>
+
 
 		{% elif approach == 'snowball' %}
 			<h1>Snowball Repayments</h1>
 			<h4>Debt Free after {{ results.get_snowball_time() }}</h4>
+			<p>&pound;{{ '{:,.2f}'.format(results.get_snowball_cost()) }}</p>
+
 
 		{% else %}
 			<h1>Avalanche Repayments</h1>
 			<h4>Debt Free after {{ results.get_avalanche_time() }}</h4>
+			<p>&pound;{{ '{:,.2f}'.format(results.get_avalanche_cost()) }}</p>
+
 
 		{% endif %}
     </div>
