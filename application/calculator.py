@@ -11,12 +11,19 @@ class Calculator:
 		self._month_count = -1
 		self._repayments_list = []
 		self._debt_paid = {}
+		self._repayments_made = 0
 
 	def get_total_balance(self):
 		return self._total_balance
 
 	def get_total_min_repayment(self):
 		return self._total_min_repayment
+	
+	def get_repayments_made(self):
+		return self.get_total_repayments
+	
+	def reset_repayments_made(self):
+		self.total_repayments = 0
 	
 	def get_month_count(self):
 		return self._month_count
@@ -98,6 +105,9 @@ class Calculator:
 					# decrease the total debt balance by the repayment
 					self._total_balance -= minimum_repayment
 
+					# increase total paid
+					self._repayments_made += minimum_repayment
+
 				else:
 					final_payment = current_balance
 					# pay the final balance and reduce the available repayment amount by the final payment
@@ -106,6 +116,9 @@ class Calculator:
 
 					# decrease the total debt balance by the repayment
 					self._total_balance -= final_payment
+
+					# increase total paid
+					self._repayments_made += final_payment
 				
 			# USE EXTRA MONEY TO FOLLOW REPAYMENT APPROACH (stack, snowball, avalanche)
 			# add a 2nd for loop to check the balances and pay any extra money each month towards the debts in turn according to their order in the list sorted by repayment approach
@@ -118,11 +131,17 @@ class Calculator:
 						# pay debt in full and put the remainder towards the next debt
 						self._total_balance -= debt_balance
 
+						# increase total paid
+						self._repayments_made += debt_balance
+
 						# Note where the extra money goes
 						if repayment > 0:
 							self._repayments_list.append([self._month_count, self._total_balance, debt_to_check.get_identifier(), repayment])
 
 						repayment -= debt_balance
+
+						# increase total paid
+						self._repayments_made += debt_balance
 
 					else:
 						debt_to_check.set_balance(repayment)
@@ -130,11 +149,15 @@ class Calculator:
 					# and reduce the total balance (below)
 						self._total_balance -= repayment
 
+						# increase total paid
+						self._repayments_made += repayment
+
 						# Note where the extra money goes
 						if repayment > 0:
 							self._repayments_list.append([self._month_count, self._total_balance, debt_to_check.get_identifier(), repayment])
 
 						repayment -= repayment
+
 
 		# add last debt to paid list
 		for d in self._debt_list:
